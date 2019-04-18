@@ -14,6 +14,7 @@ public:
     DetectorConstruction();
     virtual ~DetectorConstruction();
 
+    // Construct函数为在G4VUserDetectorConstruction中有实现。这里只需要重写，不需要在构造函数中调用。
     virtual G4VPhysicalVolume* Construct();
     virtual G4LogicalVolume* GetScoringVolume() const;
     void SetCheckOverlaps(G4bool checkOverLaps);

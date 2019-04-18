@@ -1,7 +1,8 @@
 #include "SteppingAction.hh"
 #include "DetectorConstruction.hh"
 #include "G4RunManager.hh"
-
+#include "g4root.hh"
+#include "G4SystemOfUnits.hh"
 
 SteppingAction::SteppingAction(EventAction *eventAction):G4UserSteppingAction(),fEventAction(eventAction)
 {
@@ -20,5 +21,7 @@ void SteppingAction::UserSteppingAction(const G4Step *step)
     G4LogicalVolume* volume=step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
     if(volume!=fScoringVolume) return;
     G4double energy=step->GetTotalEnergyDeposit();
-    fEventAction->Accumulate(&energy);
+    G4double s[1]={energy};
+    fEventAction->Accumulate(s);
+
 }

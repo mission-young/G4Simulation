@@ -11,7 +11,7 @@
 DetectorConstruction::DetectorConstruction()
     :G4VUserDetectorConstruction(),fScoringVolume(nullptr){
     fCheckOverLaps=true;
-    Construct();
+    //Construct();
 }
 
 DetectorConstruction::~DetectorConstruction()

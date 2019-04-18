@@ -21,7 +21,7 @@ void ActionInitialization::BuildForMaster() const
 void ActionInitialization::Build() const
 {
     SetUserAction(new PrimaryGeneratorAction);
-    RunAction* runAction=new RunAction();
+    RunAction* runAction=new RunAction(1);
     SetUserAction(runAction);
     EventAction* eventAction = new EventAction(runAction);
     SetUserAction(eventAction);

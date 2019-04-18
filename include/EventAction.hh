@@ -19,6 +19,7 @@ private:
     RunAction *fRunAction;
     G4double *accumulateValueList;
     int accumulateValueCount;
+
 };
 
 #endif // EVENTACTION_HH

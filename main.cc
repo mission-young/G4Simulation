@@ -12,8 +12,8 @@
 #include "G4UIExecutive.hh"
 
 #include "Randomize.hh"
-
-
+#include "G4VModularPhysicsList.hh"
+#include "G4PhysListFactory.hh"
 
 int main(int argc,char** argv)
 {
@@ -28,9 +28,16 @@ int main(int argc,char** argv)
 #endif
     runManager->SetUserInitialization(new DetectorConstruction());
 
-    G4VModularPhysicsList* physicsList=new QBBC;
-    physicsList->SetVerboseLevel(1);
-    runManager->SetUserInitialization(physicsList);
+//    G4VModularPhysicsList* physicsList=new QBBC;
+//    physicsList->SetVerboseLevel(1);
+//    runManager->SetUserInitialization(physicsList);
+
+    //采用PhysicsListFactory的方式可以通过字符串的方式传入物理过程，较为方便
+
+    G4PhysListFactory factory;
+    G4VModularPhysicsList* physicslist = factory.GetReferencePhysList("QBBC");
+    physicslist->SetVerboseLevel(1);
+    runManager->SetUserInitialization(physicslist);
 
     runManager->SetUserInitialization(new ActionInitialization());
 

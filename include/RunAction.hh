@@ -4,6 +4,7 @@
 #include "G4UserRunAction.hh"
 #include "G4Accumulable.hh"
 #include "G4AccumulableManager.hh"
+
 class G4Run;
 
 class RunAction:public G4UserRunAction
@@ -18,11 +19,11 @@ public:
     void Accumulate(G4double *list);
 private:
     virtual void DefineAccumulableManager();
-protected:
-    G4AccumulableManager *accumulableManager; // add 'static' will case error.
-    G4Accumulable<G4double>* accumulateList; //mark your accumulatelist
-    int accumulateListSize;
-    G4double *accumulateValueList;
+private:
+    G4Accumulable<G4double> accumulateList[10]={0,0,0,0,0,0,0,0,0,0}; //mark your accumulatelist
+    // id:0 每一个event沉积的总能量
+    G4int accumulateListSize;
+    G4double accumulateValueList[10]={0,0,0,0,0,0,0,0,0,0};
 
 
 };
