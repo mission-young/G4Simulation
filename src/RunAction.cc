@@ -1,58 +1,137 @@
 #include "RunAction.hh"
-#include "G4RunManager.hh"
+#include "Analysis.hh"
+
 #include "G4Run.hh"
-//#include "G4RootAnalysisManager.hh"
-//以下三个头文件，载入那个就会生成对应格式的文件。而不需要更改下面G4AnalysisManager的具体实现类型。
-#include "g4root.hh"
-//#include "g4xml.hh"
-//#include "g4csv.hh"
+#include "G4RunManager.hh"
+#include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 
-RunAction::RunAction(G4int accumulateParsNum):G4UserRunAction()
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+RunAction::RunAction(G4int accumulateParsNum)
+ : G4UserRunAction()
 {
-    //G4RunManager::GetRunManager()->SetPrintProgress(1000);
     accumulateListSize=accumulateParsNum;
     DefineAccumulableManager();
+
+    // set printing event number per each event
+    G4RunManager::GetRunManager()->SetPrintProgress(100);
+    // Get analysis manager
     auto analysisManager = G4AnalysisManager::Instance();
+         G4cout << "Using " << analysisManager->GetType() << G4endl;
+
     analysisManager->SetVerboseLevel(1);
-    analysisManager->SetFirstHistoId(1);
-    analysisManager->CreateNtuple("tree","G4-tree");
+    analysisManager->SetFirstHistoId(0);
+
+    //histo
+    // Create directories
+    //analysisManager->SetHistoDirectoryName("histograms");
+    //analysisManager->SetNtupleDirectoryName("ntuple");
+    analysisManager->SetNtupleMerging(true);
+    analysisManager->SetNtupleRowWise(false);
+      // Note: merging ntuples is available only with Root output
+
+    // Book histograms, ntuple
+    //
+
+    // Creating histograms
+    analysisManager->CreateH1("Eabs","Edep in absorber", 100, 0., 800*MeV);
+    analysisManager->CreateH1("Egap","Edep in gap", 100, 0., 100*MeV);
+    analysisManager->CreateH1("Labs","trackL in absorber", 100, 0., 1*m);
+    analysisManager->CreateH1("Lgap","trackL in gap", 100, 0., 50*cm);
+
+
+    // Creating ntuple
+    //
+    analysisManager->CreateNtuple("tree", "G4 Simulation tree");
+    analysisManager->CreateNtupleDColumn("Eabs");
+    analysisManager->CreateNtupleDColumn("Egap");
+    analysisManager->CreateNtupleDColumn("Labs");
+    analysisManager->CreateNtupleDColumn("Lgap");
+
     analysisManager->CreateNtupleDColumn("E");
     analysisManager->FinishNtuple();
-    analysisManager->CreateH1("h1","h1",1000,0,2*MeV);
+
 }
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::~RunAction()
 {
-    delete G4AnalysisManager::Instance();
+  delete G4AnalysisManager::Instance();
 }
 
-void RunAction::BeginOfRunAction(const G4Run *run)
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
-    //inform the runManager to save random number seed
-    G4RunManager::GetRunManager()->SetRandomNumberStore(false);
-    G4AccumulableManager* accumulableManager=G4AccumulableManager::Instance();
-    accumulableManager->Reset();//accumulableManager can't be static.
+  //inform the runManager to save random number seed
+  //G4RunManager::GetRunManager()->SetRandomNumberStore(true);
 
-    auto analysisManager=G4AnalysisManager::Instance();
-    analysisManager->OpenFile("testOutput");
+  // Get analysis manager
+  auto analysisManager = G4AnalysisManager::Instance();
 
+  // Open an output file
+  //
+  G4String fileName = "out";
+  analysisManager->OpenFile(fileName);
 }
 
-void RunAction::EndOfRunAction(const G4Run *run)
-{
-    G4int nEvent=run->GetNumberOfEvent();
-    if(nEvent == 0) return;
-    G4AccumulableManager* accumulableManager=G4AccumulableManager::Instance();
-    accumulableManager->Merge();
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-    for (int i = 0; i < accumulateListSize; ++i) {
-        accumulateValueList[i]=accumulateList[i].GetValue();
+void RunAction::EndOfRunAction(const G4Run* run)
+{
+   G4int nEvent=run->GetNumberOfEvent();
+   if(nEvent==0) return;
+   G4AccumulableManager* accumulableManager=G4AccumulableManager::Instance();
+   accumulableManager->Merge();
+   for (int i = 0; i < accumulateListSize; ++i) {
+       accumulateValueList[i]=accumulateList[i].GetValue();
+   }
+  // print histogram statistics
+  //
+  auto analysisManager = G4AnalysisManager::Instance();
+  if ( analysisManager->GetH1(1) ) {
+    G4cout << G4endl << " ----> print histograms statistic ";
+    if(isMaster) {
+      G4cout << "for the entire run " << G4endl << G4endl;
     }
-    auto analysisManager=G4AnalysisManager::Instance();
+    else {
+      G4cout << "for the local thread " << G4endl << G4endl;
+    }
 
-    analysisManager->Write();
-    analysisManager->CloseFile();
+    G4cout << " EAbs : mean = "
+       << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
+
+    G4cout << " EGap : mean = "
+       << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
+
+    G4cout << " LAbs : mean = "
+      << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length")
+      << " rms = "
+      << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
+
+    G4cout << " LGap : mean = "
+      << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length")
+      << " rms = "
+      << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
+  }
+
+  // save histograms & ntuple
+  //
+  analysisManager->Write();
+  analysisManager->CloseFile();
+}
+
+void RunAction::Accumulate(G4double *list)
+{
+    for (int i = 0; i < accumulateListSize; ++i) {
+        accumulateList[i]+=list[i];
+    }
 }
 
 void RunAction::DefineAccumulableManager()
@@ -63,19 +142,4 @@ void RunAction::DefineAccumulableManager()
     }
 }
 
-G4double *RunAction::GetAccumulateValue()
-{
-    return accumulateValueList;
-}
-
-int RunAction::GetAccumulateValueCount()
-{
-    return accumulateListSize;
-}
-
-void RunAction::Accumulate(G4double *list)
-{
-    for (int i = 0; i < accumulateListSize; ++i) {
-        accumulateList[i]+=list[i];
-    }
-}
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

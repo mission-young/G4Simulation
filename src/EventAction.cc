@@ -1,60 +1,153 @@
 #include "EventAction.hh"
-#include "G4EventManager.hh"
-#include "RunAction.hh"
-#include "g4root.hh"
-#include "G4SystemOfUnits.hh"
-#include "G4Trajectory.hh"
-#include "G4TrajectoryContainer.hh"
+#include "Analysis.hh"
+
+#include "G4RunManager.hh"
 #include "G4Event.hh"
-#include "G4VHitsCollection.hh"
-#include "G4ios.hh"
 #include "G4SDManager.hh"
-EventAction::EventAction(RunAction *runAction):G4UserEventAction (),fRunAction(runAction)
+#include "G4HCofThisEvent.hh"
+#include "G4UnitsTable.hh"
+
+#include "Randomize.hh"
+#include <iomanip>
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+EventAction::EventAction(RunAction *runAction)
+ : G4UserEventAction(),
+   fAbsoEdepHCID(-1),
+   fGapEdepHCID(-1),
+   fAbsoTrackLengthHCID(-1),
+   fGapTrackLengthHCID(-1),
+   fRunAction(runAction)
 {
+    //optional
     accumulateValueList=fRunAction->GetAccumulateValue();
     accumulateValueCount=fRunAction->GetAccumulateValueCount();
 }
 
-EventAction::~EventAction()
-{
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+EventAction::~EventAction()
+{}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+G4THitsMap<G4double>*
+EventAction::GetHitsCollection(G4int hcID,
+                                  const G4Event* event) const
+{
+  auto hitsCollection
+    = static_cast<G4THitsMap<G4double>*>(
+        event->GetHCofThisEvent()->GetHC(hcID));
+
+  if ( ! hitsCollection ) {
+    G4ExceptionDescription msg;
+    msg << "Cannot access hitsCollection ID " << hcID;
+    G4Exception("EventAction::GetHitsCollection()",
+      "MyCode0003", FatalException, msg);
+  }
+
+  return hitsCollection;
 }
 
-void EventAction::BeginOfEventAction(const G4Event *event)
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+G4double EventAction::GetSum(G4THitsMap<G4double>* hitsMap) const
+{
+  G4double sumValue = 0.;
+  for ( auto it : *hitsMap->GetMap() ) {
+    // hitsMap->GetMap() returns the map of std::map<G4int, G4double*>
+    sumValue += *(it.second);
+  }
+  return sumValue;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void EventAction::PrintEventStatistics(
+                            G4double absoEdep, G4double absoTrackLength,
+                            G4double gapEdep, G4double gapTrackLength) const
+{
+  // Print event statistics
+  //
+  G4cout
+     << "   Absorber: total energy: "
+     << std::setw(7) << G4BestUnit(absoEdep, "Energy")
+     << "       total track length: "
+     << std::setw(7) << G4BestUnit(absoTrackLength, "Length")
+     << G4endl
+     << "        Gap: total energy: "
+     << std::setw(7) << G4BestUnit(gapEdep, "Energy")
+     << "       total track length: "
+     << std::setw(7) << G4BestUnit(gapTrackLength, "Length")
+     << G4endl;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 {
     for (int i = 0; i < accumulateValueCount; ++i) {
-        accumulateValueList[i]=0;
-    }
+            accumulateValueList[i]=0;
+        }
 }
 
-void EventAction::EndOfEventAction(const G4Event *event)
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void EventAction::EndOfEventAction(const G4Event* event)
 {
-//    G4int hcid = G4SDManager::GetSDMpointer()->GetCollectionID("HitsCollection");
-//    auto hitsCollection= static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(hcid));
+   // Get hist collections IDs
+  if ( fAbsoEdepHCID == -1 ) {
+    fAbsoEdepHCID
+      = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/Edep");
+    fGapEdepHCID
+      = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/Edep");
+    fAbsoTrackLengthHCID
+      = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/TrackLength");
+    fGapTrackLengthHCID
+      = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/TrackLength");
+  }
 
-//    auto Hit=(*hitsCollection)[hitsCollection->entries()-1];
+  // Get sum values from hits collections
+  //
+  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
+  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
+
+  auto absoTrackLength
+    = GetSum(GetHitsCollection(fAbsoTrackLengthHCID, event));
+  auto gapTrackLength
+    = GetSum(GetHitsCollection(fGapTrackLengthHCID, event));
+
+  fRunAction->Accumulate(accumulateValueList);
+
+  // get analysis manager
+  auto analysisManager = G4AnalysisManager::Instance();
 
 
-    G4TrajectoryContainer* trajectoryContainer=event->GetTrajectoryContainer();
-    G4int n_trajectories=0;
-    if(trajectoryContainer) n_trajectories=trajectoryContainer->entries();
-    G4int eventID=event->GetEventID();
-    if(eventID<100||eventID%100==0){
-        G4cout<<">>> Event: "<<eventID<<G4endl;
-        if(trajectoryContainer){
-            G4cout<<"    "<<n_trajectories
-                 <<" trajectories stored in this event."<<G4endl;
-        }
-        //G4cout<<"    "<<event->GetHCofThisEvent()->GetHC(0)->GetSize()<<" hits stored in this event"<<G4endl;
-    }
+  // fill histograms
+  //
+  analysisManager->FillH1(0, absoEdep);
+  analysisManager->FillH1(1, gapEdep);
+  analysisManager->FillH1(2, absoTrackLength);
+  analysisManager->FillH1(3, gapTrackLength);
 
+  // fill ntuple
+  //
+  analysisManager->FillNtupleDColumn(0, absoEdep);
+  analysisManager->FillNtupleDColumn(1, gapEdep);
+  analysisManager->FillNtupleDColumn(2, absoTrackLength);
+  analysisManager->FillNtupleDColumn(3, gapTrackLength);
+  analysisManager->FillNtupleDColumn(4,accumulateValueList[0]);
+  analysisManager->AddNtupleRow();
 
-    fRunAction->Accumulate(accumulateValueList);
-    auto analysisManager=G4AnalysisManager::Instance();
-    analysisManager->FillNtupleDColumn(0,accumulateValueList[0]);
-    analysisManager->AddNtupleRow();
-    analysisManager->FillH1(1,accumulateValueList[0]);
-  //  analysisManager->FillH1(1,Hit->GetEdep());
+  //print per event (modulo n)
+  //
+  auto eventID = event->GetEventID();
+  auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
+  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
+    G4cout << "---> End of event: " << eventID << G4endl;
+    PrintEventStatistics(absoEdep, absoTrackLength, gapEdep, gapTrackLength);
+  }
 }
 
 void EventAction::Accumulate(G4double *list)
@@ -63,5 +156,7 @@ void EventAction::Accumulate(G4double *list)
         accumulateValueList[i]+=list[i];
     }
 }
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 

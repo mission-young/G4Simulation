@@ -19,7 +19,7 @@ void SteppingAction::UserSteppingAction(const G4Step *step)
     const DetectorConstruction* det=static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
     fScoringVolume=det->GetScoringVolume();
     G4LogicalVolume* volume=step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
-    if(volume!=fScoringVolume) return;
+    //if(volume!=fScoringVolume) return;
     G4double energy=step->GetTotalEnergyDeposit();
     G4double s[1]={energy};
     fEventAction->Accumulate(s);
