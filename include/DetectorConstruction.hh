@@ -3,10 +3,13 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
+#include "tls.hh"
+
+#include "G4GlobalMagFieldMessenger.hh"
 
 class G4VPhysicalVolume;
 class G4LogicalVolume;
-
+class G4UserLimits;
 
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -18,6 +21,7 @@ public:
     virtual G4VPhysicalVolume* Construct();
     virtual G4LogicalVolume* GetScoringVolume() const;
     void SetCheckOverlaps(G4bool checkOverLaps);
+    virtual void ConstructSDandField();
 private:
     void DefineMaterials();
 
@@ -29,12 +33,17 @@ private:
     void DefineOtherVolume();
 
     void DefineVisAttributes();
-protected:
+
+private:
     G4LogicalVolume* fScoringVolume;
     G4bool fCheckOverLaps;
-
+    G4UserLimits* fStepLimit;
     G4LogicalVolume *logicWorld;
     G4VPhysicalVolume *physicsWorld;
+
+    G4LogicalVolume*   fLogicTarget;
+    static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger;
+    //G4UserLimits* fStepLimit;
 };
 
 #endif // DETECTORCONSTRUCTION_HH

@@ -10,6 +10,7 @@
 
 RunAction::RunAction(G4int accumulateParsNum):G4UserRunAction()
 {
+    //G4RunManager::GetRunManager()->SetPrintProgress(1000);
     accumulateListSize=accumulateParsNum;
     DefineAccumulableManager();
     auto analysisManager = G4AnalysisManager::Instance();

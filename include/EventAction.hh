@@ -3,6 +3,8 @@
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
+#include "G4THitsCollection.hh"
+#include "SDHit.hh"
 
 class RunAction;
 
@@ -21,5 +23,5 @@ private:
     int accumulateValueCount;
 
 };
-
+typedef G4THitsCollection<SDHit> HitsCollection;
 #endif // EVENTACTION_HH
