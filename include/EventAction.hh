@@ -31,10 +31,10 @@ private:
                             G4double gapEdep, G4double gapTrackLength) const;
 
   // data members
-  G4int  fAbsoEdepHCID;
-  G4int  fGapEdepHCID;
-  G4int  fAbsoTrackLengthHCID;
-  G4int  fGapTrackLengthHCID;
+//  G4int  fAbsoEdepHCID;
+//  G4int  fGapEdepHCID;
+//  G4int  fAbsoTrackLengthHCID;
+//  G4int  fGapTrackLengthHCID;
   RunAction *fRunAction;
 
   G4double *accumulateValueList;

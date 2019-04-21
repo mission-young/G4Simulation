@@ -35,21 +35,26 @@ RunAction::RunAction(G4int accumulateParsNum)
     //
 
     // Creating histograms
-    analysisManager->CreateH1("Eabs","Edep in absorber", 100, 0., 800*MeV);
-    analysisManager->CreateH1("Egap","Edep in gap", 100, 0., 100*MeV);
-    analysisManager->CreateH1("Labs","trackL in absorber", 100, 0., 1*m);
-    analysisManager->CreateH1("Lgap","trackL in gap", 100, 0., 50*cm);
+//    analysisManager->CreateH1("Eabs","Edep in absorber", 100, 0., 800*MeV);
+//    analysisManager->CreateH1("Egap","Edep in gap", 100, 0., 100*MeV);
+//    analysisManager->CreateH1("Labs","trackL in absorber", 100, 0., 1*m);
+//    analysisManager->CreateH1("Lgap","trackL in gap", 100, 0., 50*cm);
 
 
     // Creating ntuple
     //
     analysisManager->CreateNtuple("tree", "G4 Simulation tree");
-    analysisManager->CreateNtupleDColumn("Eabs");
-    analysisManager->CreateNtupleDColumn("Egap");
-    analysisManager->CreateNtupleDColumn("Labs");
-    analysisManager->CreateNtupleDColumn("Lgap");
+//    analysisManager->CreateNtupleDColumn("Eabs");
+//    analysisManager->CreateNtupleDColumn("Egap");
+//    analysisManager->CreateNtupleDColumn("Labs");
+//    analysisManager->CreateNtupleDColumn("Lgap");
 
     analysisManager->CreateNtupleDColumn("E");
+
+    analysisManager->CreateNtupleDColumn("DSSD142E");
+    analysisManager->CreateNtupleDColumn("DSSD40E");
+    analysisManager->CreateNtupleDColumn("DSSD304E");
+
     analysisManager->FinishNtuple();
 
 }
@@ -91,35 +96,35 @@ void RunAction::EndOfRunAction(const G4Run* run)
   // print histogram statistics
   //
   auto analysisManager = G4AnalysisManager::Instance();
-  if ( analysisManager->GetH1(1) ) {
-    G4cout << G4endl << " ----> print histograms statistic ";
-    if(isMaster) {
-      G4cout << "for the entire run " << G4endl << G4endl;
-    }
-    else {
-      G4cout << "for the local thread " << G4endl << G4endl;
-    }
+//  if ( analysisManager->GetH1(1) ) {
+//    G4cout << G4endl << " ----> print histograms statistic ";
+//    if(isMaster) {
+//      G4cout << "for the entire run " << G4endl << G4endl;
+//    }
+//    else {
+//      G4cout << "for the local thread " << G4endl << G4endl;
+//    }
 
-    G4cout << " EAbs : mean = "
-       << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy")
-       << " rms = "
-       << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
+//    G4cout << " EAbs : mean = "
+//       << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy")
+//       << " rms = "
+//       << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
 
-    G4cout << " EGap : mean = "
-       << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy")
-       << " rms = "
-       << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
+//    G4cout << " EGap : mean = "
+//       << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy")
+//       << " rms = "
+//       << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
 
-    G4cout << " LAbs : mean = "
-      << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length")
-      << " rms = "
-      << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
+//    G4cout << " LAbs : mean = "
+//      << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length")
+//      << " rms = "
+//      << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
 
-    G4cout << " LGap : mean = "
-      << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length")
-      << " rms = "
-      << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
-  }
+//    G4cout << " LGap : mean = "
+//      << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length")
+//      << " rms = "
+//      << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
+//  }
 
   // save histograms & ntuple
   //

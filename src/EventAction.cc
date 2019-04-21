@@ -14,10 +14,6 @@
 
 EventAction::EventAction(RunAction *runAction)
  : G4UserEventAction(),
-   fAbsoEdepHCID(-1),
-   fGapEdepHCID(-1),
-   fAbsoTrackLengthHCID(-1),
-   fGapTrackLengthHCID(-1),
    fRunAction(runAction)
 {
     //optional
@@ -97,26 +93,32 @@ void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 void EventAction::EndOfEventAction(const G4Event* event)
 {
    // Get hist collections IDs
-  if ( fAbsoEdepHCID == -1 ) {
-    fAbsoEdepHCID
-      = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/Edep");
-    fGapEdepHCID
-      = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/Edep");
-    fAbsoTrackLengthHCID
-      = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/TrackLength");
-    fGapTrackLengthHCID
-      = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/TrackLength");
-  }
+//    if ( fAbsoEdepHCID == -1 ) {
+//      fAbsoEdepHCID
+//        = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/Edep");
+//      fGapEdepHCID
+//        = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/Edep");
+//      fAbsoTrackLengthHCID
+//        = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/TrackLength");
+//      fGapTrackLengthHCID
+//        = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/TrackLength");
+//    }
 
   // Get sum values from hits collections
   //
-  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
-  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
+//  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
+//  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
+  G4int DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142um/Edep");
+  auto DSSD142E=GetSum(GetHitsCollection(DSSD142HCID,event));
+  G4int DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40um/Edep");
+  auto DSSD40E=GetSum(GetHitsCollection(DSSD40HCID,event));
+  G4int DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304um/Edep");
+  auto DSSD304E=GetSum(GetHitsCollection(DSSD304HCID,event));
 
-  auto absoTrackLength
-    = GetSum(GetHitsCollection(fAbsoTrackLengthHCID, event));
-  auto gapTrackLength
-    = GetSum(GetHitsCollection(fGapTrackLengthHCID, event));
+//  auto absoTrackLength
+//    = GetSum(GetHitsCollection(fAbsoTrackLengthHCID, event));
+//  auto gapTrackLength
+//    = GetSum(GetHitsCollection(fGapTrackLengthHCID, event));
 
   fRunAction->Accumulate(accumulateValueList);
 
@@ -126,28 +128,31 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
   // fill histograms
   //
-  analysisManager->FillH1(0, absoEdep);
-  analysisManager->FillH1(1, gapEdep);
-  analysisManager->FillH1(2, absoTrackLength);
-  analysisManager->FillH1(3, gapTrackLength);
+//  analysisManager->FillH1(0, absoEdep);
+//  analysisManager->FillH1(1, gapEdep);
+//  analysisManager->FillH1(2, absoTrackLength);
+//  analysisManager->FillH1(3, gapTrackLength);
 
   // fill ntuple
   //
-  analysisManager->FillNtupleDColumn(0, absoEdep);
-  analysisManager->FillNtupleDColumn(1, gapEdep);
-  analysisManager->FillNtupleDColumn(2, absoTrackLength);
-  analysisManager->FillNtupleDColumn(3, gapTrackLength);
-  analysisManager->FillNtupleDColumn(4,accumulateValueList[0]);
+//  analysisManager->FillNtupleDColumn(0, absoEdep);
+//  analysisManager->FillNtupleDColumn(1, gapEdep);
+//  analysisManager->FillNtupleDColumn(2, absoTrackLength);
+//  analysisManager->FillNtupleDColumn(3, gapTrackLength);
+  analysisManager->FillNtupleDColumn(0,accumulateValueList[0]);
+  analysisManager->FillNtupleDColumn(1,DSSD142E);
+  analysisManager->FillNtupleDColumn(2,DSSD40E);
+  analysisManager->FillNtupleDColumn(3,DSSD304E);
   analysisManager->AddNtupleRow();
 
   //print per event (modulo n)
   //
   auto eventID = event->GetEventID();
   auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
-    G4cout << "---> End of event: " << eventID << G4endl;
-    PrintEventStatistics(absoEdep, absoTrackLength, gapEdep, gapTrackLength);
-  }
+//  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
+//    G4cout << "---> End of event: " << eventID << G4endl;
+//    PrintEventStatistics(absoEdep, absoTrackLength, gapEdep, gapTrackLength);
+//  }
 }
 
 void EventAction::Accumulate(G4double *list)

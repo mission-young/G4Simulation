@@ -10,6 +10,8 @@
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
+#include "G4RandomDirection.hh"
+#include "G4IonTable.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -75,7 +77,10 @@ void PrimaryGeneratorAction::DefineParticleGuns()
       G4Exception("PrimaryGeneratorAction::GeneratePrimaries()",
         "MyCode0002", JustWarning, msg);
     }
-    DefineParticleGun(1,"e-",G4ThreeVector(0,0,-worldZHalfLength),G4ThreeVector(0,0,1),50*MeV);
+    DefineParticleGun(1,"proton",G4ThreeVector(0,0,-5*mm),G4RandomDirection(),20*MeV);
+
+    fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));
+    //fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.4,0.2,1.1).unit());
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

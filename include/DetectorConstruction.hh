@@ -33,13 +33,14 @@ public:
     void DefineVisAttributes();
     void DefineSensitiveDetector();
     void DefineMagField();
-
+    // xn,yn x,y的条数；xl,yl x,y的Si块宽度；xd,yd x,y的Si块间隔
+    G4LogicalVolume* DefineDSSD(G4String name,G4int xn,G4int yn,G4double xl,G4double yl,G4double zl,G4double xd,G4double yd);
     static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger;
     G4bool  fCheckOverlaps;
 private:
     G4VPhysicalVolume *physicsWorld;
     G4LogicalVolume *logicWorld;
-    G4LogicalVolume *calorLV;
+    //G4LogicalVolume *calorLV;
     G4LogicalVolume *fScoringVolume;
     G4bool fCheckOverLaps;
 };
