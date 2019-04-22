@@ -8,7 +8,7 @@
 #include <iomanip>
 G4ThreadLocal G4Allocator<SDHit>* HitAllocator=nullptr;
 
-SDHit::SDHit():G4VHit(),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector())
+SDHit::SDHit():G4VHit(),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector()),fxid(-1),fyid(-1)
 {
 
 }
@@ -18,6 +18,8 @@ SDHit::SDHit(const SDHit &right):G4VHit()
     fTrackID  = right.fTrackID;
     fEdep     = right.fEdep;
     fPos      = right.fPos;
+    fxid      = right.fxid;
+    fyid      = right.fyid;
 }
 
 SDHit::~SDHit()
@@ -30,6 +32,8 @@ const SDHit &SDHit::operator=(const SDHit &right)
     fTrackID  = right.fTrackID;
     fEdep     = right.fEdep;
     fPos      = right.fPos;
+    fxid      = right.fxid;
+    fyid      = right.fyid;
     return *this;
 }
 
@@ -54,6 +58,20 @@ void SDHit::Draw()
 
 void SDHit::Print()
 {
-    G4cout <<" trackID: "<<fTrackID<<" Edep: "<<std::setw(7)<< G4BestUnit(fEdep,"Energy")
-          <<std::setw(7)<<G4BestUnit(fPos,"Length")<<G4endl;
+    G4cout<<fTrackID<<'\t'<<fPos.x()<<'\t'<<fPos.y()<<'\t'<<fPos.z()<<'\t'<<fEdep<<'\t'<<fxid<<'\t'<<fyid<<G4endl;
+}
+
+void SDHit::SetPos(G4Step *step)
+{
+    fPos=step->GetPostStepPoint()->GetPosition();
+}
+
+void SDHit::SetEdep(G4Step *step)
+{
+    fEdep+=step->GetTotalEnergyDeposit();
+}
+
+void SDHit::SetTrackID(G4Step *step)
+{
+    fTrackID=step->GetTrack()->GetTrackID();
 }

@@ -44,16 +44,31 @@ RunAction::RunAction(G4int accumulateParsNum)
     // Creating ntuple
     //
     analysisManager->CreateNtuple("tree", "G4 Simulation tree");
-//    analysisManager->CreateNtupleDColumn("Eabs");
-//    analysisManager->CreateNtupleDColumn("Egap");
-//    analysisManager->CreateNtupleDColumn("Labs");
-//    analysisManager->CreateNtupleDColumn("Lgap");
 
-    analysisManager->CreateNtupleDColumn("E");
 
-    analysisManager->CreateNtupleDColumn("DSSD142E");
-    analysisManager->CreateNtupleDColumn("DSSD40E");
-    analysisManager->CreateNtupleDColumn("DSSD304E");
+    analysisManager->CreateNtupleIColumn("DSSD142TrackID");
+    analysisManager->CreateNtupleDColumn("DSSD142Edep");
+    analysisManager->CreateNtupleDColumn("DSSD142Posx");
+    analysisManager->CreateNtupleDColumn("DSSD142Posy");
+    analysisManager->CreateNtupleDColumn("DSSD142Posz");
+    analysisManager->CreateNtupleIColumn("DSSD142xid");
+    analysisManager->CreateNtupleIColumn("DSSD142yid");
+
+    analysisManager->CreateNtupleIColumn("DSSD40TrackID");
+    analysisManager->CreateNtupleDColumn("DSSD40Edep");
+    analysisManager->CreateNtupleDColumn("DSSD40Posx");
+    analysisManager->CreateNtupleDColumn("DSSD40Posy");
+    analysisManager->CreateNtupleDColumn("DSSD40Posz");
+    analysisManager->CreateNtupleIColumn("DSSD40xid");
+    analysisManager->CreateNtupleIColumn("DSSD40yid");
+
+    analysisManager->CreateNtupleIColumn("DSSD304TrackID");
+    analysisManager->CreateNtupleDColumn("DSSD304Edep");
+    analysisManager->CreateNtupleDColumn("DSSD304Posx");
+    analysisManager->CreateNtupleDColumn("DSSD304Posy");
+    analysisManager->CreateNtupleDColumn("DSSD304Posz");
+    analysisManager->CreateNtupleIColumn("DSSD304xid");
+    analysisManager->CreateNtupleIColumn("DSSD304yid");
 
     analysisManager->FinishNtuple();
 
@@ -96,35 +111,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
   // print histogram statistics
   //
   auto analysisManager = G4AnalysisManager::Instance();
-//  if ( analysisManager->GetH1(1) ) {
-//    G4cout << G4endl << " ----> print histograms statistic ";
-//    if(isMaster) {
-//      G4cout << "for the entire run " << G4endl << G4endl;
-//    }
-//    else {
-//      G4cout << "for the local thread " << G4endl << G4endl;
-//    }
 
-//    G4cout << " EAbs : mean = "
-//       << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy")
-//       << " rms = "
-//       << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
-
-//    G4cout << " EGap : mean = "
-//       << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy")
-//       << " rms = "
-//       << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
-
-//    G4cout << " LAbs : mean = "
-//      << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length")
-//      << " rms = "
-//      << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
-
-//    G4cout << " LGap : mean = "
-//      << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length")
-//      << " rms = "
-//      << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
-//  }
 
   // save histograms & ntuple
   //

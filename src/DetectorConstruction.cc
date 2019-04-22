@@ -23,6 +23,8 @@
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
 
+#include "SensitiveDetector.hh"
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4ThreadLocal
@@ -181,7 +183,7 @@ void DetectorConstruction::DefineMaterials()
                   kStateGas, 2.73*kelvin, 3.e-18*pascal);
 
   // Print materials
-  G4cout << *(G4Material::GetMaterialTable()) << G4endl;
+ // G4cout << *(G4Material::GetMaterialTable()) << G4endl;
 }
 
 void DetectorConstruction::DefineWorldVolume(G4double x, G4double y, G4double z)
@@ -206,132 +208,6 @@ void DetectorConstruction::DefineWorldVolume(G4double x, G4double y, G4double z)
 void DetectorConstruction::DefineTargetVolume()
 {
 
-    // Geometry parameters
-    G4int  nofLayers = 10;
-    G4double  absoThickness = 10.*mm;
-    G4double  gapThickness =  5.*mm;
-    G4double  calorSizeXY  = 10.*cm;
-
-    auto  layerThickness = absoThickness + gapThickness;
-    auto  calorThickness = nofLayers * layerThickness;
-
-
-    // Get materials
-    auto defaultMaterial = G4Material::GetMaterial("Galactic");
-    auto absorberMaterial = G4Material::GetMaterial("G4_Pb");
-    auto gapMaterial = G4Material::GetMaterial("liquidArgon");
-
-    if ( ! defaultMaterial || ! absorberMaterial || ! gapMaterial ) {
-      G4ExceptionDescription msg;
-      msg << "Cannot retrieve materials already defined.";
-      G4Exception("B4DetectorConstruction::DefineVolumes()",
-        "MyCode0001", FatalException, msg);
-    }
-
-
-
-    //
-    // Calorimeter
-    //
-    auto calorimeterS
-      = new G4Box("Calorimeter",     // its name
-                   calorSizeXY/2, calorSizeXY/2, calorThickness/2); // its size
-
-    auto calorLV
-      = new G4LogicalVolume(
-                   calorimeterS,    // its solid
-                   defaultMaterial, // its material
-                   "Calorimeter");  // its name
-
-    new G4PVPlacement(
-                   0,                // no rotation
-                   G4ThreeVector(),  // at (0,0,0)
-                   calorLV,          // its logical volume
-                   "Calorimeter",    // its name
-                   logicWorld,          // its mother  volume
-                   false,            // no boolean operation
-                   0,                // copy number
-                   fCheckOverlaps);  // checking overlaps
-
-    //
-    // Layer
-    //
-    auto layerS
-      = new G4Box("Layer",           // its name
-                   calorSizeXY/2, calorSizeXY/2, layerThickness/2); // its size
-
-    auto layerLV
-      = new G4LogicalVolume(
-                   layerS,           // its solid
-                   defaultMaterial,  // its material
-                   "Layer");         // its name
-
-    new G4PVReplica(
-                   "Layer",          // its name
-                   layerLV,          // its logical volume
-                   calorLV,          // its mother
-                   kZAxis,           // axis of replication
-                   nofLayers,        // number of replica
-                   layerThickness);  // witdth of replica
-
-    //
-    // Absorber
-    //
-    auto absorberS
-      = new G4Box("Abso",            // its name
-                   calorSizeXY/2, calorSizeXY/2, absoThickness/2); // its size
-
-    auto absorberLV
-      = new G4LogicalVolume(
-                   absorberS,        // its solid
-                   absorberMaterial, // its material
-                   "AbsoLV");          // its name
-
-     new G4PVPlacement(
-                   0,                // no rotation
-                   G4ThreeVector(0., 0., -gapThickness/2), //  its position
-                   absorberLV,       // its logical volume
-                   "Abso",           // its name
-                   layerLV,          // its mother  volume
-                   false,            // no boolean operation
-                   0,                // copy number
-                   fCheckOverlaps);  // checking overlaps
-
-    //
-    // Gap
-    //
-    auto gapS
-      = new G4Box("Gap",             // its name
-                   calorSizeXY/2, calorSizeXY/2, gapThickness/2); // its size
-
-    auto gapLV
-      = new G4LogicalVolume(
-                   gapS,             // its solid
-                   gapMaterial,      // its material
-                   "GapLV");      // its name
-
-    new G4PVPlacement(
-                   0,                // no rotation
-                   G4ThreeVector(0., 0., absoThickness/2), //  its position
-                   gapLV,            // its logical volume
-                   "Gap",            // its name
-                   layerLV,          // its mother  volume
-                   false,            // no boolean operation
-                   0,                // copy number
-                   fCheckOverlaps);  // checking overlaps
-
-    //
-    // print parameters
-    //
-    G4cout
-      << G4endl
-      << "------------------------------------------------------------" << G4endl
-      << "---> The calorimeter is " << nofLayers << " layers of: [ "
-      << absoThickness/mm << "mm of " << absorberMaterial->GetName()
-      << " + "
-      << gapThickness/mm << "mm of " << gapMaterial->GetName() << " ] " << G4endl
-      << "------------------------------------------------------------" << G4endl;
-
 }
 
 void DetectorConstruction::DefineVisAttributes()
@@ -349,56 +225,27 @@ void DetectorConstruction::DefineVisAttributes()
 void DetectorConstruction::DefineSensitiveDetector()
 {
     G4SDManager::GetSDMpointer()->SetVerboseLevel(1);
-    //
-    // Scorers
-    //
 
-//    // declare Absorber as a MultiFunctionalDetector scorer
-//    //
-//    auto absDetector = new G4MultiFunctionalDetector("Absorber");
-//    G4SDManager::GetSDMpointer()->AddNewDetector(absDetector);
+    auto DSSD142=new SensitiveDetector("DSSD142SD","DSSD142HitsCollection",16*16);
 
-    G4VPrimitiveScorer* primitive;
-//    primitive = new G4PSEnergyDeposit("Edep");
-//    absDetector->RegisterPrimitive(primitive);
-
-//    primitive = new G4PSTrackLength("TrackLength");
-//    auto charged = new G4SDChargedFilter("chargedFilter");
-//    primitive ->SetFilter(charged);
-//    absDetector->RegisterPrimitive(primitive);
-
-//    SetSensitiveDetector("AbsoLV",absDetector);
-
-//    // declare Gap as a MultiFunctionalDetector scorer
-//    //
-//    auto gapDetector = new G4MultiFunctionalDetector("Gap");
-//    G4SDManager::GetSDMpointer()->AddNewDetector(gapDetector);
-
-//    primitive = new G4PSEnergyDeposit("Edep");
-//    gapDetector->RegisterPrimitive(primitive);
-
-//    primitive = new G4PSTrackLength("TrackLength");
-//    primitive ->SetFilter(charged);
-//    gapDetector->RegisterPrimitive(primitive);
-
-//    SetSensitiveDetector("GapLV",gapDetector);
-
-    auto DSSD142=new G4MultiFunctionalDetector("DSSD142um");
-    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
-    primitive = new G4PSEnergyDeposit("Edep");
-    DSSD142->RegisterPrimitive(primitive);
+    //auto DSSD142=new G4MultiFunctionalDetector("DSSD142um");
+     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
+    //primitive = new G4PSEnergyDeposit("Edep");
+    //DSSD142->RegisterPrimitive(primitive);
     SetSensitiveDetector("DSSD142_single",DSSD142);
 
-    auto DSSD40=new G4MultiFunctionalDetector("DSSD40um");
+   // auto DSSD40=new G4MultiFunctionalDetector("DSSD40um");
+    auto DSSD40=new SensitiveDetector("DSSD40SD","DSSD40HitsCollection",16*16);
     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD40);
-    primitive = new G4PSEnergyDeposit("Edep");
-    DSSD40->RegisterPrimitive(primitive);
+    //primitive = new G4PSEnergyDeposit("Edep");
+    //DSSD40->RegisterPrimitive(primitive);
     SetSensitiveDetector("DSSD40_single",DSSD40);
 
-    auto DSSD304=new G4MultiFunctionalDetector("DSSD304um");
+    //auto DSSD304=new G4MultiFunctionalDetector("DSSD304um");
+    auto DSSD304=new SensitiveDetector("DSSD304SD","DSSD304HitsCollection",16*16);
     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD304);
-    primitive = new G4PSEnergyDeposit("Edep");
-    DSSD304->RegisterPrimitive(primitive);
+    //primitive = new G4PSEnergyDeposit("Edep");
+    //DSSD304->RegisterPrimitive(primitive);
     SetSensitiveDetector("DSSD304_single",DSSD304);
 }
 
@@ -431,7 +278,7 @@ G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int 
         for (int j=0;j<yn;j++) {
             G4double xi=x0+i*(xd+xl);
             G4double yj=y0+j*(yd+yl);
-            int icrys=10*i+j;
+            int icrys=i*xn+j;
             new G4PVPlacement(0,
                               G4ThreeVector(xi,yj,0),
                               logicSi,
@@ -451,7 +298,7 @@ void DetectorConstruction::DefineVolumes()
 {
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
-    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,1*mm,1*mm,142*um,0.2*mm,0.2*mm);
+    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,1*mm,1*mm,142*um,20*um,20*um);
     new G4PVPlacement(0,
                       G4ThreeVector(0,0,0),
                       DSSD142,
@@ -460,7 +307,7 @@ void DetectorConstruction::DefineVolumes()
                       false,
                       0,
                       fCheckOverLaps);
-   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,1*mm,1*mm,40*um,0.2*mm,0.2*mm);
+   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,1*mm,1*mm,40*um,20*um,20*um);
    new G4PVPlacement(0,
                      G4ThreeVector(0,0,19*mm),
                      DSSD40,
@@ -469,7 +316,7 @@ void DetectorConstruction::DefineVolumes()
                      false,
                      0,
                      fCheckOverLaps);
-   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,1*mm,1*mm,304*um,0.2*mm,0.2*mm);
+   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,1*mm,1*mm,304*um,20*um,20*um);
    new G4PVPlacement(0,
                      G4ThreeVector(0,0,38*mm),
                      DSSD304,

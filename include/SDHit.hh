@@ -8,6 +8,7 @@
 #include "G4Allocator.hh"
 #include "tls.hh"
 #include "G4Threading.hh"
+#include "G4Step.hh"
 
 class SDHit : public G4VHit
 {
@@ -25,17 +26,25 @@ public:
     virtual void Draw();
     virtual void Print();
 
-    void SetTrackID (G4int trackid)     {fTrackID=trackid;}
-    void SetEdep    (G4double edep)     {fEdep=edep;}
-    void SetPos     (G4ThreeVector Pos) {fPos=Pos;}
+
+    void SetPos(G4Step* step);
+    void SetEdep(G4Step* step);
+    void SetTrackID(G4Step* step);
+    void SetXid(int xid) {fxid=xid;}
+    void SetYid(int yid) {fyid=yid;}
+
 
     G4int           GetTrackID() const {return fTrackID;}
     G4double        GetEdep() const    {return fEdep;}
     G4ThreeVector   GetPos() const     {return fPos;}
+    G4int           GetXid() const     {return fxid;}
+    G4int           GetYid() const     {return fyid;}
 private:
     G4int   fTrackID;
-    G4double    fEdep;
+    G4double fEdep;
     G4ThreeVector   fPos;
+    G4int fxid;
+    G4int fyid;
 };
 
 typedef G4THitsCollection<SDHit> HitsCollection;

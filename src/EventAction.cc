@@ -9,12 +9,13 @@
 
 #include "Randomize.hh"
 #include <iomanip>
+#include "SensitiveDetector.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 EventAction::EventAction(RunAction *runAction)
- : G4UserEventAction(),
-   fRunAction(runAction)
+    : G4UserEventAction(),
+      fRunAction(runAction)
 {
     //optional
     accumulateValueList=fRunAction->GetAccumulateValue();
@@ -28,131 +29,152 @@ EventAction::~EventAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4THitsMap<G4double>*
-EventAction::GetHitsCollection(G4int hcID,
-                                  const G4Event* event) const
-{
-  auto hitsCollection
-    = static_cast<G4THitsMap<G4double>*>(
-        event->GetHCofThisEvent()->GetHC(hcID));
-
-  if ( ! hitsCollection ) {
-    G4ExceptionDescription msg;
-    msg << "Cannot access hitsCollection ID " << hcID;
-    G4Exception("EventAction::GetHitsCollection()",
-      "MyCode0003", FatalException, msg);
-  }
-
-  return hitsCollection;
-}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-G4double EventAction::GetSum(G4THitsMap<G4double>* hitsMap) const
-{
-  G4double sumValue = 0.;
-  for ( auto it : *hitsMap->GetMap() ) {
-    // hitsMap->GetMap() returns the map of std::map<G4int, G4double*>
-    sumValue += *(it.second);
-  }
-  return sumValue;
-}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-void EventAction::PrintEventStatistics(
-                            G4double absoEdep, G4double absoTrackLength,
-                            G4double gapEdep, G4double gapTrackLength) const
-{
-  // Print event statistics
-  //
-  G4cout
-     << "   Absorber: total energy: "
-     << std::setw(7) << G4BestUnit(absoEdep, "Energy")
-     << "       total track length: "
-     << std::setw(7) << G4BestUnit(absoTrackLength, "Length")
-     << G4endl
-     << "        Gap: total energy: "
-     << std::setw(7) << G4BestUnit(gapEdep, "Energy")
-     << "       total track length: "
-     << std::setw(7) << G4BestUnit(gapTrackLength, "Length")
-     << G4endl;
-}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 {
     for (int i = 0; i < accumulateValueCount; ++i) {
-            accumulateValueList[i]=0;
-        }
+        accumulateValueList[i]=0;
+    }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
-   // Get hist collections IDs
-//    if ( fAbsoEdepHCID == -1 ) {
-//      fAbsoEdepHCID
-//        = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/Edep");
-//      fGapEdepHCID
-//        = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/Edep");
-//      fAbsoTrackLengthHCID
-//        = G4SDManager::GetSDMpointer()->GetCollectionID("Absorber/TrackLength");
-//      fGapTrackLengthHCID
-//        = G4SDManager::GetSDMpointer()->GetCollectionID("Gap/TrackLength");
-//    }
 
-  // Get sum values from hits collections
-  //
-//  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
-//  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
-  G4int DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142um/Edep");
-  auto DSSD142E=GetSum(GetHitsCollection(DSSD142HCID,event));
-  G4int DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40um/Edep");
-  auto DSSD40E=GetSum(GetHitsCollection(DSSD40HCID,event));
-  G4int DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304um/Edep");
-  auto DSSD304E=GetSum(GetHitsCollection(DSSD304HCID,event));
+    static int DSSD142HCID=-1;
+    static int DSSD40HCID=-1;
+    static int DSSD304HCID=-1;
 
-//  auto absoTrackLength
-//    = GetSum(GetHitsCollection(fAbsoTrackLengthHCID, event));
-//  auto gapTrackLength
-//    = GetSum(GetHitsCollection(fGapTrackLengthHCID, event));
+    //  if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142SD/DSSD142HitsCollection");
+    //  if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40SD/DSSD40HitsCollection");
+    //  if(DSSD304HCID<0) DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304SD/DSSD304HitsCollection");
 
-  fRunAction->Accumulate(accumulateValueList);
-
-  // get analysis manager
-  auto analysisManager = G4AnalysisManager::Instance();
+    if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142HitsCollection");
+    if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40HitsCollection");
+    if(DSSD304HCID<0) DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304HitsCollection");
 
 
-  // fill histograms
-  //
-//  analysisManager->FillH1(0, absoEdep);
-//  analysisManager->FillH1(1, gapEdep);
-//  analysisManager->FillH1(2, absoTrackLength);
-//  analysisManager->FillH1(3, gapTrackLength);
+    auto DSSD142HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD142HCID));
+    auto DSSD40HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD40HCID));
+    auto DSSD304HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD304HCID));
 
-  // fill ntuple
-  //
-//  analysisManager->FillNtupleDColumn(0, absoEdep);
-//  analysisManager->FillNtupleDColumn(1, gapEdep);
-//  analysisManager->FillNtupleDColumn(2, absoTrackLength);
-//  analysisManager->FillNtupleDColumn(3, gapTrackLength);
-  analysisManager->FillNtupleDColumn(0,accumulateValueList[0]);
-  analysisManager->FillNtupleDColumn(1,DSSD142E);
-  analysisManager->FillNtupleDColumn(2,DSSD40E);
-  analysisManager->FillNtupleDColumn(3,DSSD304E);
-  analysisManager->AddNtupleRow();
 
-  //print per event (modulo n)
-  //
-  auto eventID = event->GetEventID();
-  auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-//  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
-//    G4cout << "---> End of event: " << eventID << G4endl;
-//    PrintEventStatistics(absoEdep, absoTrackLength, gapEdep, gapTrackLength);
-//  }
+    G4int DSSD142TrackID=-1;
+    G4int DSSD142xid=-1;
+    G4int DSSD142yid=-1;
+    G4double DSSD142Edep=0;
+    G4double DSSD142Posx=0;
+    G4double DSSD142Posy=0;
+    G4double DSSD142Posz=0;
+    G4int DSSD40TrackID=-1;
+    G4int DSSD40xid=-1;
+    G4int DSSD40yid=-1;
+    G4double DSSD40Edep=0;
+    G4double DSSD40Posx=0;
+    G4double DSSD40Posy=0;
+    G4double DSSD40Posz=0;
+    G4int DSSD304TrackID=-1;
+    G4int DSSD304xid=-1;
+    G4int DSSD304yid=-1;
+    G4double DSSD304Edep=0;
+    G4double DSSD304Posx=0;
+    G4double DSSD304Posy=0;
+    G4double DSSD304Posz=0;
+
+    // get analysis manager
+    auto analysisManager = G4AnalysisManager::Instance();
+
+    //G4cout<<DSSD142HitsCollection->entries()<<G4endl;
+    for (int i = 0; i < DSSD142HitsCollection->entries(); ++i) {
+        SDHit *a142Hit=(*DSSD142HitsCollection)[i];
+        SDHit *a40Hit=(*DSSD40HitsCollection)[i];
+        SDHit *a304Hit=(*DSSD304HitsCollection)[i];
+        DSSD142TrackID=a142Hit->GetTrackID();
+        DSSD142xid=a142Hit->GetXid();
+        DSSD142yid=a142Hit->GetYid();
+        DSSD142Edep=a142Hit->GetEdep();
+        DSSD142Posx=a142Hit->GetPos().x();
+        DSSD142Posy=a142Hit->GetPos().y();
+        DSSD142Posz=a142Hit->GetPos().z();
+
+
+
+        DSSD40TrackID=a40Hit->GetTrackID();
+        DSSD40xid=a40Hit->GetXid();
+        DSSD40yid=a40Hit->GetYid();
+        DSSD40Edep=a40Hit->GetEdep();
+        DSSD40Posx=a40Hit->GetPos().x();
+        DSSD40Posy=a40Hit->GetPos().y();
+        DSSD40Posz=a40Hit->GetPos().z();
+
+
+
+        DSSD304TrackID=a304Hit->GetTrackID();
+        DSSD304xid=a304Hit->GetXid();
+        DSSD304yid=a304Hit->GetYid();
+        DSSD304Edep=a304Hit->GetEdep();
+        DSSD304Posx=a304Hit->GetPos().x();
+        DSSD304Posy=a304Hit->GetPos().y();
+        DSSD304Posz=a304Hit->GetPos().z();
+
+        if(DSSD142TrackID>0||DSSD40TrackID>0||DSSD304TrackID>0){
+
+         analysisManager->FillNtupleIColumn(0,DSSD142TrackID);
+         analysisManager->FillNtupleDColumn(1,DSSD142Edep);
+         analysisManager->FillNtupleDColumn(2,DSSD142Posx);
+         analysisManager->FillNtupleDColumn(3,DSSD142Posy);
+         analysisManager->FillNtupleDColumn(4,DSSD142Posz);
+         analysisManager->FillNtupleIColumn(5,DSSD142xid);
+         analysisManager->FillNtupleIColumn(6,DSSD142yid);
+
+         analysisManager->FillNtupleIColumn(7,DSSD40TrackID);
+         analysisManager->FillNtupleDColumn(8,DSSD40Edep);
+         analysisManager->FillNtupleDColumn(9,DSSD40Posx);
+         analysisManager->FillNtupleDColumn(10,DSSD40Posy);
+         analysisManager->FillNtupleDColumn(11,DSSD40Posz);
+         analysisManager->FillNtupleIColumn(12,DSSD40xid);
+         analysisManager->FillNtupleIColumn(13,DSSD40yid);
+
+         analysisManager->FillNtupleIColumn(14,DSSD304TrackID);
+         analysisManager->FillNtupleDColumn(15,DSSD304Edep);
+         analysisManager->FillNtupleDColumn(16,DSSD304Posx);
+         analysisManager->FillNtupleDColumn(17,DSSD304Posy);
+         analysisManager->FillNtupleDColumn(18,DSSD304Posz);
+         analysisManager->FillNtupleIColumn(19,DSSD304xid);
+         analysisManager->FillNtupleIColumn(20,DSSD304yid);
+
+         analysisManager->AddNtupleRow();
+     }
+    }
+
+    // Get sum values from hits collections
+    //
+    //  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
+    //  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
+    // G4int DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142um/Edep");
+    // auto DSSD142E=GetSum(GetHitsCollection(DSSD142HCID,event));
+    //  G4int DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40um/Edep");
+    // auto DSSD40E=GetSum(GetHitsCollection(DSSD40HCID,event));
+    // G4int DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304um/Edep");
+    // auto DSSD304E=GetSum(GetHitsCollection(DSSD304HCID,event));
+
+
+
+   // fRunAction->Accumulate(accumulateValueList);
+
+
+
+
+
+
+
+
+
+
+
 }
 
 void EventAction::Accumulate(G4double *list)
