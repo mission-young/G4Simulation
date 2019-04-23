@@ -5,7 +5,8 @@
 #include "G4RunManager.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
-
+#include "EventAction.hh"
+#include "RootIO.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::RunAction()
@@ -14,52 +15,13 @@ RunAction::RunAction()
 
     // set printing event number per each event
     G4RunManager::GetRunManager()->SetPrintProgress(1000);
-    // Get analysis manager
-    auto analysisManager = G4AnalysisManager::Instance();
-
-    analysisManager->SetVerboseLevel(1);
-    //analysisManager->SetFirstHistoId(0);
-
-    analysisManager->SetNtupleMerging(true);
-    analysisManager->SetNtupleRowWise(false);
-
-
-    analysisManager->CreateNtuple("tree", "G4 Simulation tree");
-
-
-    analysisManager->CreateNtupleIColumn("DSSD142TrackID");
-    analysisManager->CreateNtupleDColumn("DSSD142Edep");
-    analysisManager->CreateNtupleDColumn("DSSD142Posx");
-    analysisManager->CreateNtupleDColumn("DSSD142Posy");
-    analysisManager->CreateNtupleDColumn("DSSD142Posz");
-    analysisManager->CreateNtupleIColumn("DSSD142xid");
-    analysisManager->CreateNtupleIColumn("DSSD142yid");
-
-    analysisManager->CreateNtupleIColumn("DSSD40TrackID");
-    analysisManager->CreateNtupleDColumn("DSSD40Edep");
-    analysisManager->CreateNtupleDColumn("DSSD40Posx");
-    analysisManager->CreateNtupleDColumn("DSSD40Posy");
-    analysisManager->CreateNtupleDColumn("DSSD40Posz");
-    analysisManager->CreateNtupleIColumn("DSSD40xid");
-    analysisManager->CreateNtupleIColumn("DSSD40yid");
-
-    analysisManager->CreateNtupleIColumn("DSSD304TrackID");
-    analysisManager->CreateNtupleDColumn("DSSD304Edep");
-    analysisManager->CreateNtupleDColumn("DSSD304Posx");
-    analysisManager->CreateNtupleDColumn("DSSD304Posy");
-    analysisManager->CreateNtupleDColumn("DSSD304Posz");
-    analysisManager->CreateNtupleIColumn("DSSD304xid");
-    analysisManager->CreateNtupleIColumn("DSSD304yid");
-
-    analysisManager->FinishNtuple();
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::~RunAction()
 {
-  delete G4AnalysisManager::Instance();
+    delete G4AnalysisManager::Instance();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -67,27 +29,36 @@ RunAction::~RunAction()
 void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
 
-  // Get analysis manager
-  auto analysisManager = G4AnalysisManager::Instance();
+    RootIO* rootManager=RootIO::GetInstance();
+//    TFile *opf=rootManager->GetOpf();
+  //  opf=new TFile("simu.root","recreate");
+    rootManager->SetOpf("simu.root");
+//    TTree *tree=rootManager->GetOpt();
+ //   tree=new TTree("tree","simu tree");
+    rootManager->SetOpt("tree","simulation");
 
-  // Open an output file
-  //
-  G4String fileName = "out";
-  analysisManager->OpenFile(fileName);
+//    rootManager->SetOpf();
+//    rootManager->SetOpt();
+    TTree *tree=rootManager->GetOpt();
+
+    tree->Branch("d0",target.d0,"d0[16][16]/D");
+    tree->Branch("d1",target.d1,"d1[16][16]/D");
+    tree->Branch("d2",target.d2,"d2[16][16]/D");
+
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void RunAction::EndOfRunAction(const G4Run* run)
 {
-   G4int nEvent=run->GetNumberOfEvent();
-   if(nEvent==0) return;
+    G4int nEvent=run->GetNumberOfEvent();
+    if(nEvent==0) return;
 
+    RootIO* rootManager=RootIO::GetInstance();
+    rootManager->GetOpf()->Write();
+    rootManager->GetOpf()->Close();
 
-  auto analysisManager = G4AnalysisManager::Instance();
-
-  analysisManager->Write();
-  analysisManager->CloseFile();
 }
 
 

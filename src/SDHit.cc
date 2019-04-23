@@ -6,20 +6,25 @@
 #include "G4VisAttributes.hh"
 #include "G4UnitsTable.hh"
 #include <iomanip>
+#include "G4EventManager.hh"
+#include "G4RunManager.hh"
 G4ThreadLocal G4Allocator<SDHit>* HitAllocator=nullptr;
 
-SDHit::SDHit():G4VHit(),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector()),fxid(-1),fyid(-1)
+SDHit::SDHit():G4VHit(),fCopyID(-1),fIsHit(false),fEventID(-1),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector()),fxid(-1),fyid(-1)
 {
 
 }
 
 SDHit::SDHit(const SDHit &right):G4VHit()
 {
+    fEventID  = right.fEventID;
     fTrackID  = right.fTrackID;
     fEdep     = right.fEdep;
     fPos      = right.fPos;
     fxid      = right.fxid;
     fyid      = right.fyid;
+    fCopyID   = right.fCopyID;
+    fIsHit    = right.fIsHit;
 }
 
 SDHit::~SDHit()
@@ -29,11 +34,14 @@ SDHit::~SDHit()
 
 const SDHit &SDHit::operator=(const SDHit &right)
 {
+    fEventID  = right.fEventID;
     fTrackID  = right.fTrackID;
     fEdep     = right.fEdep;
     fPos      = right.fPos;
     fxid      = right.fxid;
     fyid      = right.fyid;
+    fCopyID   = right.fCopyID;
+    fIsHit    = right.fIsHit;
     return *this;
 }
 
@@ -59,6 +67,16 @@ void SDHit::Draw()
 void SDHit::Print()
 {
     G4cout<<fTrackID<<'\t'<<fPos.x()<<'\t'<<fPos.y()<<'\t'<<fPos.z()<<'\t'<<fEdep<<'\t'<<fxid<<'\t'<<fyid<<G4endl;
+}
+
+void SDHit::SetEventID()
+{
+    fEventID=G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+}
+
+void SDHit::SetCopyID(G4Step *step)
+{
+    fCopyID=step->GetPreStepPoint()->GetTouchable()->GetCopyNumber();
 }
 
 void SDHit::SetPos(G4Step *step)

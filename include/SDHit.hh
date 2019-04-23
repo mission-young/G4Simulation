@@ -26,20 +26,30 @@ public:
     virtual void Draw();
     virtual void Print();
 
-
+    void SetEvent(G4Step* step);
     void SetPos(G4Step* step);
     void SetEdep(G4Step* step);
     void SetTrackID(G4Step* step);
+    void SetEventID();
     void SetXid(int xid) {fxid=xid;}
     void SetYid(int yid) {fyid=yid;}
+    void SetXYid(int xid,int yid){fxid=xid;fyid=yid;}
+    void SetCopyID(G4Step* step);
+    void SetCopyID(int copyid) {fCopyID=copyid;}
+    void SetIsHit(G4bool ishit){fIsHit=ishit;}
 
-
+    G4int           GetEventID() const {return fEventID;}
     G4int           GetTrackID() const {return fTrackID;}
     G4double        GetEdep() const    {return fEdep;}
     G4ThreeVector   GetPos() const     {return fPos;}
     G4int           GetXid() const     {return fxid;}
     G4int           GetYid() const     {return fyid;}
+    G4int           GetCopyID() const  {return fCopyID;}
+    G4bool          GetIsHit()  const  {return fIsHit;}
 private:
+    G4int   fCopyID;
+    G4bool  fIsHit;
+    G4int   fEventID;
     G4int   fTrackID;
     G4double fEdep;
     G4ThreeVector   fPos;

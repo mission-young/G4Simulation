@@ -55,7 +55,7 @@ void PrimaryGeneratorAction::DefineParticleGun(G4int particleNumber, G4String pa
 void PrimaryGeneratorAction::DefineParticleGuns()
 {
 
-    DefineParticleGun(1,"proton",G4ThreeVector(0,0,-5*mm),G4RandomDirection(0.98), G4UniformRand()*10*MeV);
+    DefineParticleGun(10,"proton",G4ThreeVector(0,0,-5*mm),G4RandomDirection(0.98), G4UniformRand()*10*MeV);
 
   //fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));
     //fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.4,0.2,1.1).unit());
