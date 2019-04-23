@@ -12,13 +12,11 @@ class G4LogicalVolume;
 class SteppingAction : public G4UserSteppingAction
 {
 public:
-    SteppingAction(EventAction *eventAction);
+    SteppingAction();
     virtual ~SteppingAction();
 
     virtual void UserSteppingAction(const G4Step* step);
 private:
-    EventAction* fEventAction;
-    G4LogicalVolume* fScoringVolume;
 
 };
 

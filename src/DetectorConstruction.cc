@@ -227,25 +227,17 @@ void DetectorConstruction::DefineSensitiveDetector()
     G4SDManager::GetSDMpointer()->SetVerboseLevel(1);
 
     auto DSSD142=new SensitiveDetector("DSSD142SD","DSSD142HitsCollection",16*16);
-
-    //auto DSSD142=new G4MultiFunctionalDetector("DSSD142um");
-     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
-    //primitive = new G4PSEnergyDeposit("Edep");
-    //DSSD142->RegisterPrimitive(primitive);
+    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
     SetSensitiveDetector("DSSD142_single",DSSD142);
 
-   // auto DSSD40=new G4MultiFunctionalDetector("DSSD40um");
+
     auto DSSD40=new SensitiveDetector("DSSD40SD","DSSD40HitsCollection",16*16);
     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD40);
-    //primitive = new G4PSEnergyDeposit("Edep");
-    //DSSD40->RegisterPrimitive(primitive);
     SetSensitiveDetector("DSSD40_single",DSSD40);
 
-    //auto DSSD304=new G4MultiFunctionalDetector("DSSD304um");
+
     auto DSSD304=new SensitiveDetector("DSSD304SD","DSSD304HitsCollection",16*16);
     G4SDManager::GetSDMpointer()->AddNewDetector(DSSD304);
-    //primitive = new G4PSEnergyDeposit("Edep");
-    //DSSD304->RegisterPrimitive(primitive);
     SetSensitiveDetector("DSSD304_single",DSSD304);
 }
 
@@ -268,10 +260,10 @@ void DetectorConstruction::DefineMagField()
 G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int yn, G4double xl, G4double yl, G4double zl, G4double xd, G4double yd)
 {
     G4Box* solidSi=new G4Box("Si",xl/2,yl/2,zl/2);
-    G4LogicalVolume *logicSi=new                     G4LogicalVolume(solidSi,G4Material::GetMaterial("G4_Si"),name+"_single");
+    G4LogicalVolume *logicSi=new G4LogicalVolume(solidSi,G4Material::GetMaterial("G4_Si"),name+"_single");
     G4Box* solidDSSD=new G4Box("DSSD",xn*(xl+xd)/2,yn*(xl+yd)/2,zl/2);
-//    G4LogicalVolume* logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("Galactic"),name);
-        G4LogicalVolume* logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("Galactic"),name);
+
+    G4LogicalVolume* logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("Galactic"),name);
     G4double x0=-(xn-1)*(xd+xl)/2;
     G4double y0=-(yn-1)*(yd+yl)/2;
     for (int i=0;i<xn;i++) {
@@ -279,7 +271,7 @@ G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int 
             G4double xi=x0+i*(xd+xl);
             G4double yj=y0+j*(yd+yl);
             int icrys=i*xn+j;
-            new G4PVPlacement(0,
+            new G4PVPlacement(nullptr,
                               G4ThreeVector(xi,yj,0),
                               logicSi,
                               name+"_single",
@@ -299,7 +291,7 @@ void DetectorConstruction::DefineVolumes()
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
     G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,1*mm,1*mm,142*um,20*um,20*um);
-    new G4PVPlacement(0,
+    new G4PVPlacement(nullptr,
                       G4ThreeVector(0,0,0),
                       DSSD142,
                       "DSSD142",
@@ -308,7 +300,7 @@ void DetectorConstruction::DefineVolumes()
                       0,
                       fCheckOverLaps);
    G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,1*mm,1*mm,40*um,20*um,20*um);
-   new G4PVPlacement(0,
+   new G4PVPlacement(nullptr,
                      G4ThreeVector(0,0,19*mm),
                      DSSD40,
                      "DSSD40",
@@ -317,7 +309,7 @@ void DetectorConstruction::DefineVolumes()
                      0,
                      fCheckOverLaps);
    G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,1*mm,1*mm,304*um,20*um,20*um);
-   new G4PVPlacement(0,
+   new G4PVPlacement(nullptr,
                      G4ThreeVector(0,0,38*mm),
                      DSSD304,
                      "DSSD304",

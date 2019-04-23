@@ -49,6 +49,7 @@ set(${PROJECT_NAME}_SCRIPTS
   run1.mac
   run2.mac
   vis.mac
+  README.md
   )
 
 foreach(_script ${${PROJECT_NAME}_SCRIPTS})

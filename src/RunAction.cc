@@ -8,41 +8,22 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-RunAction::RunAction(G4int accumulateParsNum)
+RunAction::RunAction()
  : G4UserRunAction()
 {
-    accumulateListSize=accumulateParsNum;
-    DefineAccumulableManager();
 
     // set printing event number per each event
-    G4RunManager::GetRunManager()->SetPrintProgress(100);
+    G4RunManager::GetRunManager()->SetPrintProgress(1000);
     // Get analysis manager
     auto analysisManager = G4AnalysisManager::Instance();
-         G4cout << "Using " << analysisManager->GetType() << G4endl;
 
     analysisManager->SetVerboseLevel(1);
-    analysisManager->SetFirstHistoId(0);
+    //analysisManager->SetFirstHistoId(0);
 
-    //histo
-    // Create directories
-    //analysisManager->SetHistoDirectoryName("histograms");
-    //analysisManager->SetNtupleDirectoryName("ntuple");
     analysisManager->SetNtupleMerging(true);
     analysisManager->SetNtupleRowWise(false);
-      // Note: merging ntuples is available only with Root output
-
-    // Book histograms, ntuple
-    //
-
-    // Creating histograms
-//    analysisManager->CreateH1("Eabs","Edep in absorber", 100, 0., 800*MeV);
-//    analysisManager->CreateH1("Egap","Edep in gap", 100, 0., 100*MeV);
-//    analysisManager->CreateH1("Labs","trackL in absorber", 100, 0., 1*m);
-//    analysisManager->CreateH1("Lgap","trackL in gap", 100, 0., 50*cm);
 
 
-    // Creating ntuple
-    //
     analysisManager->CreateNtuple("tree", "G4 Simulation tree");
 
 
@@ -85,8 +66,6 @@ RunAction::~RunAction()
 
 void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
-  //inform the runManager to save random number seed
-  //G4RunManager::GetRunManager()->SetRandomNumberStore(true);
 
   // Get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
@@ -103,35 +82,13 @@ void RunAction::EndOfRunAction(const G4Run* run)
 {
    G4int nEvent=run->GetNumberOfEvent();
    if(nEvent==0) return;
-   G4AccumulableManager* accumulableManager=G4AccumulableManager::Instance();
-   accumulableManager->Merge();
-   for (int i = 0; i < accumulateListSize; ++i) {
-       accumulateValueList[i]=accumulateList[i].GetValue();
-   }
-  // print histogram statistics
-  //
+
+
   auto analysisManager = G4AnalysisManager::Instance();
 
-
-  // save histograms & ntuple
-  //
   analysisManager->Write();
   analysisManager->CloseFile();
 }
 
-void RunAction::Accumulate(G4double *list)
-{
-    for (int i = 0; i < accumulateListSize; ++i) {
-        accumulateList[i]+=list[i];
-    }
-}
-
-void RunAction::DefineAccumulableManager()
-{
-    G4AccumulableManager* accumulableManager=G4AccumulableManager::Instance();
-    for (int i = 0; i < accumulateListSize; ++i) {
-        accumulableManager->RegisterAccumulable(accumulateList[i]);
-    }
-}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

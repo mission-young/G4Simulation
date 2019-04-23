@@ -13,13 +13,10 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-EventAction::EventAction(RunAction *runAction)
-    : G4UserEventAction(),
-      fRunAction(runAction)
+EventAction::EventAction()
+    : G4UserEventAction()
 {
-    //optional
-    accumulateValueList=fRunAction->GetAccumulateValue();
-    accumulateValueCount=fRunAction->GetAccumulateValueCount();
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -34,9 +31,7 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 {
-    for (int i = 0; i < accumulateValueCount; ++i) {
-        accumulateValueList[i]=0;
-    }
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -47,10 +42,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
     static int DSSD142HCID=-1;
     static int DSSD40HCID=-1;
     static int DSSD304HCID=-1;
-
-    //  if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142SD/DSSD142HitsCollection");
-    //  if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40SD/DSSD40HitsCollection");
-    //  if(DSSD304HCID<0) DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304SD/DSSD304HitsCollection");
 
     if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142HitsCollection");
     if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40HitsCollection");
@@ -149,40 +140,8 @@ void EventAction::EndOfEventAction(const G4Event* event)
          analysisManager->AddNtupleRow();
      }
     }
-
-    // Get sum values from hits collections
-    //
-    //  auto absoEdep = GetSum(GetHitsCollection(fAbsoEdepHCID, event));
-    //  auto gapEdep = GetSum(GetHitsCollection(fGapEdepHCID, event));
-    // G4int DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142um/Edep");
-    // auto DSSD142E=GetSum(GetHitsCollection(DSSD142HCID,event));
-    //  G4int DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40um/Edep");
-    // auto DSSD40E=GetSum(GetHitsCollection(DSSD40HCID,event));
-    // G4int DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304um/Edep");
-    // auto DSSD304E=GetSum(GetHitsCollection(DSSD304HCID,event));
-
-
-
-   // fRunAction->Accumulate(accumulateValueList);
-
-
-
-
-
-
-
-
-
-
-
 }
 
-void EventAction::Accumulate(G4double *list)
-{
-    for (int i = 0; i < accumulateValueCount; ++i) {
-        accumulateValueList[i]+=list[i];
-    }
-}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
