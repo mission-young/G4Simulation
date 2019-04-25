@@ -4,16 +4,11 @@
 
 #include "G4UserRunAction.hh"
 #include "globals.hh"
-#include "G4Accumulable.hh"
-#include "G4AccumulableManager.hh"
-
+#include "Analysis.hh"
+#include "dataStructure.hh"
 class G4Run;
-struct data
-{
-    double d0[16][16];
-    double d1[16][16];
-    double d2[16][16];
-};
+
+
 class RunAction : public G4UserRunAction
 {
   public:
@@ -24,8 +19,10 @@ class RunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
 
 public:
-    data target;
+
 };
+
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

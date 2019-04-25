@@ -28,7 +28,8 @@ public:
 
     void SetEvent(G4Step* step);
     void SetPos(G4Step* step);
-    void SetEdep(G4Step* step);
+    void AddEdep(G4double edep);
+    void SetEdep(G4double edep);
     void SetTrackID(G4Step* step);
     void SetEventID();
     void SetXid(int xid) {fxid=xid;}

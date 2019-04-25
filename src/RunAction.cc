@@ -6,7 +6,7 @@
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 #include "EventAction.hh"
-#include "RootIO.hh"
+//#include "RootIO.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::RunAction()
@@ -15,6 +15,33 @@ RunAction::RunAction()
 
     // set printing event number per each event
     G4RunManager::GetRunManager()->SetPrintProgress(1000);
+
+    auto analysisManager=G4AnalysisManager::Instance();
+    analysisManager->SetVerboseLevel(1);
+
+    analysisManager->SetNtupleMerging(true);
+    analysisManager->SetNtupleRowWise(false);
+
+    analysisManager->CreateNtuple("tree","G4 simulation");
+//    G4AutoLock l(&aMutex);
+//    l.lock();
+    init();
+    for (int i = 0; i < maxhit; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            char name[32];
+            for (int k = 0; k < intInfo.size(); ++k) {
+                sprintf(name,"%s_%03d_%s",intPars[j].first.data(),i,intInfo[k].first.data());
+                analysisManager->CreateNtupleIColumn(name);
+            }
+            for (int k = 0; k < doubleInfo.size(); ++k) {
+                sprintf(name,"%s_%03d_%s",doublePars[j].first.data(),i,doubleInfo[k].first.data());
+                analysisManager->CreateNtupleDColumn(name);
+            }
+        }
+    }
+    analysisManager->FinishNtuple();
+    clear();
+ //   l.unlock();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -28,24 +55,9 @@ RunAction::~RunAction()
 
 void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
-
-    RootIO* rootManager=RootIO::GetInstance();
-//    TFile *opf=rootManager->GetOpf();
-  //  opf=new TFile("simu.root","recreate");
-    rootManager->SetOpf("simu.root");
-//    TTree *tree=rootManager->GetOpt();
- //   tree=new TTree("tree","simu tree");
-    rootManager->SetOpt("tree","simulation");
-
-//    rootManager->SetOpf();
-//    rootManager->SetOpt();
-    TTree *tree=rootManager->GetOpt();
-
-    tree->Branch("d0",target.d0,"d0[16][16]/D");
-    tree->Branch("d1",target.d1,"d1[16][16]/D");
-    tree->Branch("d2",target.d2,"d2[16][16]/D");
-
-
+    auto analysisManager=G4AnalysisManager::Instance();
+    G4String fileName="simu";
+    analysisManager->OpenFile(fileName);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -55,9 +67,9 @@ void RunAction::EndOfRunAction(const G4Run* run)
     G4int nEvent=run->GetNumberOfEvent();
     if(nEvent==0) return;
 
-    RootIO* rootManager=RootIO::GetInstance();
-    rootManager->GetOpf()->Write();
-    rootManager->GetOpf()->Close();
+    auto analysisManager=G4AnalysisManager::Instance();
+    analysisManager->Write();
+    analysisManager->CloseFile();
 
 }
 
