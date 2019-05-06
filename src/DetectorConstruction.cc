@@ -288,6 +288,7 @@ G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int 
 
 void DetectorConstruction::DefineVolumes()
 {
+    // TODO: 修改DSSD的参数，使之与实际DSSD一致。
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
     G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,1*mm,1*mm,142*um,20*um,20*um);

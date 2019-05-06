@@ -6,7 +6,8 @@
 #include "G4Threading.hh"
 #include "G4ThreadLocalSingleton.hh"
 
-
+// TODO: 加载重离子注入的三维位置分布root文件。测试能否通过载入root库直接执行，如果不行则考虑使用Geant4的histo载入方式。
+// TODO: 调用rapidjson库，将部分参数写入到json文件中，并读取。实现模板化。测试多线程是否可正常运行。
 //结构体构造函数不占用内存
 
 //struct intInfo{
