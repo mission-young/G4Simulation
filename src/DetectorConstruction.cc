@@ -290,7 +290,7 @@ void DetectorConstruction::DefineVolumes()
 {
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
-    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,1*mm,1*mm,142*um,20*um,20*um);
+    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,142*um,100*um,100*um);
     new G4PVPlacement(nullptr,
                       G4ThreeVector(0,0,0),
                       DSSD142,
@@ -299,7 +299,7 @@ void DetectorConstruction::DefineVolumes()
                       false,
                       0,
                       fCheckOverLaps);
-   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,1*mm,1*mm,40*um,20*um,20*um);
+   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,40*um,100*um,100*um);
    new G4PVPlacement(nullptr,
                      G4ThreeVector(0,0,19*mm),
                      DSSD40,
@@ -308,7 +308,7 @@ void DetectorConstruction::DefineVolumes()
                      false,
                      0,
                      fCheckOverLaps);
-   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,1*mm,1*mm,304*um,20*um,20*um);
+   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,3*mm,3*mm,304*um,100*um,100*um);
    new G4PVPlacement(nullptr,
                      G4ThreeVector(0,0,38*mm),
                      DSSD304,
