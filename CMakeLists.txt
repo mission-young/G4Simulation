@@ -26,7 +26,7 @@ list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
 find_package(ROOT REQUIRED COMPONENTS RIO Net)
 
 #---Define useful ROOT functions and macros (e.g. ROOT_GENERATE_DICTIONARY)
-include(${ROOT_USE_FILE})
+# include(${ROOT_USE_FILE})
 
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
