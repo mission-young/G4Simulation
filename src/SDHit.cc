@@ -84,9 +84,14 @@ void SDHit::SetPos(G4Step *step)
     fPos=step->GetPostStepPoint()->GetPosition();
 }
 
-void SDHit::SetEdep(G4Step *step)
+void SDHit::AddEdep(G4double edep)
 {
-    fEdep+=step->GetTotalEnergyDeposit();
+    fEdep+=edep;
+}
+
+void SDHit::SetEdep(G4double edep)
+{
+    fEdep=edep;
 }
 
 void SDHit::SetTrackID(G4Step *step)

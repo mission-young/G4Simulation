@@ -23,6 +23,7 @@ public:
 
 private:
     HitsCollection* fHitsCollection;
+    std::vector<SDHit*> singleSi;
     G4int fHitsCollectionID;
     G4int fNofCells;
 };

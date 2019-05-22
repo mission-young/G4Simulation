@@ -21,28 +21,38 @@ void SensitiveDetector::Initialize(G4HCofThisEvent *hitCollection)
     hitCollection->AddHitsCollection(fHitsCollectionID,fHitsCollection);
 
     for (int i = 0; i < fNofCells; ++i) {
-        fHitsCollection->insert(new SDHit());
+        singleSi.push_back(new SDHit());
     }
 }
 
 G4bool SensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *history)
 {
+    int currentTrackID=step->GetTrack()->GetTrackID();
     G4double edep=step->GetTotalEnergyDeposit();
-
-    if(edep==0.) return false;
+    if(edep==0.) return  false;
     auto touchable=step->GetPreStepPoint()->GetTouchableHandle();
     int copyid=touchable->GetCopyNumber();
     int xid=copyid/16;
     int yid=copyid%16;
-    SDHit *aHit=(*fHitsCollection)[copyid];
-    aHit->SetEdep(step);
+    SDHit *aHit=nullptr;
+    for (int i = 0; i < fHitsCollection->entries(); ++i) {
+        if((*fHitsCollection)[i]->GetTrackID()==currentTrackID &&
+                (*fHitsCollection)[i]->GetCopyID()==copyid){
+            aHit=(*fHitsCollection)[i];
+        }
+    }
+    if(!aHit){
+        aHit=new SDHit();
+        fHitsCollection->insert(aHit);
+        aHit->SetTrackID(step);
+        aHit->SetEventID();
+        aHit->SetXid(xid);
+        aHit->SetYid(yid);
+        aHit->SetCopyID(copyid);
+        aHit->SetIsHit(true);
+    }
+    aHit->AddEdep(edep);
     aHit->SetPos(step);
-    aHit->SetTrackID(step);
-    aHit->SetEventID();
-    aHit->SetXid(xid);
-    aHit->SetYid(yid);
-    aHit->SetCopyID(copyid);
-    aHit->SetIsHit(true);
     return true;
 
 }

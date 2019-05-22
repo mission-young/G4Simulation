@@ -8,12 +8,19 @@
 #include "G4AccumulableManager.hh"
 
 class G4Run;
-struct data
+
+struct detInfo
 {
-    double d0[16][16];
-    double d1[16][16];
-    double d2[16][16];
+    int eventID;
+    int trackID;
+    int xid;
+    int yid;
+    double eDep;
+    double posX;
+    double posY;
+    double posZ;
 };
+
 class RunAction : public G4UserRunAction
 {
   public:
@@ -24,7 +31,9 @@ class RunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
 
 public:
-    data target;
+    detInfo d[3];
+    void clear();
+
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

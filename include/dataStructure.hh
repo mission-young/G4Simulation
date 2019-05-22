@@ -1,0 +1,5 @@
+#ifndef DATASTRUCTURE_HH
+#define DATASTRUCTURE_HH
+
+
+#endif // DATASTRUCTURE_HH
