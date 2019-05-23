@@ -58,34 +58,45 @@ void EventAction::EndOfEventAction(const G4Event* event)
     const RunAction *conrunAction=static_cast<const RunAction*>(G4RunManager::GetRunManager()->GetUserRunAction());
     RunAction *runAction=const_cast<RunAction*>(conrunAction);
 
-    runAction->clear();
-    SDHit *nullHit=new SDHit();
 
-    SDHit *aHit[3]={nullptr,nullptr,nullptr};
-    if(DSSD142HitsCollection->entries()>0){
-        aHit[0]=(*DSSD142HitsCollection)[0];
-    }else {
-        aHit[0]=nullHit;
-    }
-    if(DSSD40HitsCollection->entries()>0){
-        aHit[1]=(*DSSD40HitsCollection)[0];
-    }else {
-        aHit[1]=nullHit;
-    }
-    if(DSSD304HitsCollection->entries()>0){
-        aHit[2]=(*DSSD304HitsCollection)[0];
-    }else {
-        aHit[2]=nullHit;
-    }
-    for (int i = 0; i < 3; ++i) {
-        runAction->d[i].xid=aHit[i]->GetXid();
-        runAction->d[i].yid=aHit[i]->GetYid();
-        runAction->d[i].eventID=aHit[i]->GetEventID();
-        runAction->d[i].trackID=aHit[i]->GetTrackID();
-        runAction->d[i].eDep=aHit[i]->GetEdep();
-        runAction->d[i].posX=aHit[i]->GetPos().x();
-        runAction->d[i].posY=aHit[i]->GetPos().y();
-        runAction->d[i].posZ=aHit[i]->GetPos().z();
+    runAction->clear();
+
+
+    SDHit *nullHit=new SDHit();
+    for (int i = 0; i < maxhit; ++i) {
+        SDHit *aHit[3]={nullptr,nullptr,nullptr};
+        for (int j = 0; j < DSSD142HitsCollection->entries(); ++j) {
+            if((*DSSD142HitsCollection)[j]->GetTrackID()==i+1){
+                aHit[0]=(*DSSD142HitsCollection)[j];
+            }
+        }
+        if(aHit[0]==nullptr) aHit[0]=nullHit;
+
+        for (int j = 0; j < DSSD40HitsCollection->entries(); ++j) {
+            if((*DSSD40HitsCollection)[j]->GetTrackID()==i+1){
+                aHit[1]=(*DSSD40HitsCollection)[j];
+            }
+        }
+
+        if(aHit[1]==nullptr) aHit[1]=nullHit;
+        for (int j = 0; j < DSSD304HitsCollection->entries(); ++j) {
+            if((*DSSD304HitsCollection)[j]->GetTrackID()==i+1){
+                aHit[2]=(*DSSD304HitsCollection)[j];
+            }
+        }
+        if(aHit[2]==nullptr) aHit[2]=nullHit;
+
+//        for (int j = 0; j < 3; ++j) {
+//            runAction->d[j].xid[i]=aHit[j]->GetXid();
+//            runAction->d[j].yid[i]=aHit[j]->GetYid();
+//            runAction->d[j].eventID[i]=aHit[j]->GetEventID();
+//            runAction->d[j].trackID[i]=aHit[j]->GetTrackID();
+//            runAction->d[j].eDep[i]=aHit[j]->GetEdep();
+//            runAction->d[j].posX[i]=aHit[j]->GetPos().x();
+//            runAction->d[j].posY[i]=aHit[j]->GetPos().y();
+//            runAction->d[j].posZ[i]=aHit[j]->GetPos().z();
+//        }
+
     }
     RootIO *rootManager=RootIO::GetInstance();
     rootManager->GetOpt()->Fill();

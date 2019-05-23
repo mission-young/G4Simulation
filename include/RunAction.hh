@@ -6,21 +6,18 @@
 #include "globals.hh"
 #include "G4Accumulable.hh"
 #include "G4AccumulableManager.hh"
-
+#include "dataStructure.hh"
 class G4Run;
-
-struct detInfo
-{
-    int eventID;
-    int trackID;
-    int xid;
-    int yid;
-    double eDep;
-    double posX;
-    double posY;
-    double posZ;
+struct detInfo{
+int eventID[maxhit];
+int trackID[maxhit];
+int xid[maxhit];
+int yid[maxhit];
+double eDep[maxhit];
+double posX[maxhit];
+double posY[maxhit];
+double posZ[maxhit];
 };
-
 class RunAction : public G4UserRunAction
 {
   public:

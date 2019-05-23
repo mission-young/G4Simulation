@@ -40,36 +40,33 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 //    rootManager->SetOpf();
 //    rootManager->SetOpt();
     TTree *tree=rootManager->GetOpt();
+//    tree->Branch("d0xid",&d[0].xid,TString::Format("d[0].xid[%d]/I",maxhit).Data());
+//    tree->Branch("d0yid",&d[0].yid,TString::Format("d[0].yid[%d]/I",maxhit).Data());
+//    tree->Branch("d0trackid",&d[0].trackID,TString::Format("d[0].trackID[%d]/I",maxhit).Data());
+//    tree->Branch("d0eventid",&d[0].eventID,TString::Format("d[0].eventID[%d]/I",maxhit).Data());
+//    tree->Branch("d0e",&d[0].eDep,TString::Format("d[0].eDep[%d]/D",maxhit).Data());
+//    tree->Branch("d0x",&d[0].posX,TString::Format("d[0].posX[%d]/D",maxhit).Data());
+//    tree->Branch("d0y",&d[0].posY,TString::Format("d[0].posY[%d]/D",maxhit).Data());
+//    tree->Branch("d0z",&d[0].posZ,TString::Format("d[0].posZ[%d]/D",maxhit).Data());
 
-    tree->Branch("d0xid",&d[0].xid,"d[0].xid/I");
-    tree->Branch("d0yid",&d[0].yid,"d[0].yid/I");
-    tree->Branch("d0trackid",&d[0].trackID,"d[0].trackID/I");
-    tree->Branch("d0eventid",&d[0].eventID,"d[0].eventID/I");
-    tree->Branch("d0e",&d[0].eDep,"d[0].eDep/D");
-    tree->Branch("d0x",&d[0].posX,"d[0].posX/D");
-    tree->Branch("d0y",&d[0].posY,"d[0].posY/D");
-    tree->Branch("d0y",&d[0].posY,"d[0].posY/D");
-    tree->Branch("d0z",&d[0].posZ,"d[0].posZ/D");
+//    tree->Branch("d1xid",d[1].xid,TString::Format("d[1].xid[%d]/I",maxhit).Data());
+//    tree->Branch("d1yid",d[1].yid,TString::Format("d[1].yid[%d]/I",maxhit).Data());
+//    tree->Branch("d1trackid",d[1].trackID,TString::Format("d[1].trackID[%d]/I",maxhit).Data());
+//    tree->Branch("d1eventid",d[1].eventID,TString::Format("d[1].eventID[%d]/I",maxhit).Data());
+//    tree->Branch("d1e",d[1].eDep,TString::Format("d[1].eDep[%d]/D",maxhit).Data());
+//    tree->Branch("d1x",d[1].posX,TString::Format("d[1].posX[%d]/D",maxhit).Data());
+//    tree->Branch("d1y",d[1].posY,TString::Format("d[1].posY[%d]/D",maxhit).Data());
+//    tree->Branch("d1z",d[1].posZ,TString::Format("d[1].posZ[%d]/D",maxhit).Data());
 
-    tree->Branch("d1xid",&d[1].xid,"d[1].xid/I");
-    tree->Branch("d1yid",&d[1].yid,"d[1].yid/I");
-    tree->Branch("d1trackid",&d[1].trackID,"d[1].trackID/I");
-    tree->Branch("d1eventid",&d[1].eventID,"d[1].eventID/I");
-    tree->Branch("d1e",&d[1].eDep,"d[1].eDep/D");
-    tree->Branch("d1x",&d[1].posX,"d[1].posX/D");
-    tree->Branch("d1y",&d[1].posY,"d[1].posY/D");
-    tree->Branch("d1y",&d[1].posY,"d[1].posY/D");
-    tree->Branch("d1z",&d[1].posZ,"d[1].posZ/D");
+//    tree->Branch("d2xid",d[2].xid,TString::Format("d[2].xid[%d]/I",maxhit).Data());
+//    tree->Branch("d2yid",d[2].yid,TString::Format("d[2].yid[%d]/I",maxhit).Data());
+//    tree->Branch("d2trackid",d[2].trackID,TString::Format("d[2].trackID[%d]/I",maxhit).Data());
+//    tree->Branch("d2eventid",d[2].eventID,TString::Format("d[2].eventID[%d]/I",maxhit).Data());
+//    tree->Branch("d2e",d[2].eDep,TString::Format("d[2].eDep[%d]/D",maxhit).Data());
+//    tree->Branch("d2x",d[2].posX,TString::Format("d[2].posX[%d]/D",maxhit).Data());
+//    tree->Branch("d2y",d[2].posY,TString::Format("d[2].posY[%d]/D",maxhit).Data());
+//    tree->Branch("d2z",d[2].posZ,TString::Format("d[2].posZ[%d]/D",maxhit).Data());
 
-    tree->Branch("d2xid",&d[2].xid,"d[2].xid/I");
-    tree->Branch("d2yid",&d[2].yid,"d[2].yid/I");
-    tree->Branch("d2trackid",&d[2].trackID,"d[2].trackID/I");
-    tree->Branch("d2eventid",&d[2].eventID,"d[2].eventID/I");
-    tree->Branch("d2e",&d[2].eDep,"d[2].eDep/D");
-    tree->Branch("d2x",&d[2].posX,"d[2].posX/D");
-    tree->Branch("d2y",&d[2].posY,"d[2].posY/D");
-    tree->Branch("d2y",&d[2].posY,"d[2].posY/D");
-    tree->Branch("d2z",&d[2].posZ,"d[2].posZ/D");
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -88,14 +85,17 @@ void RunAction::EndOfRunAction(const G4Run* run)
 void RunAction::clear()
 {
     for (int i = 0; i < 3; ++i) {
-        d[i].xid=-1;
-        d[i].yid=-1;
-        d[i].eventID=-1;
-        d[i].trackID=-1;
-        d[i].eDep=0;
-        d[i].posX=0;
-        d[i].posY=0;
-        d[i].posZ=0;
+        for (int j = 0; j < maxhit; ++j) {
+            d[i].xid[j]=-1;
+            d[i].yid[j]=-1;
+            d[i].eventID[j]=-1;
+            d[i].trackID[j]=-1;
+            d[i].eDep[j]=0;
+            d[i].posX[j]=0;
+            d[i].posY[j]=0;
+            d[i].posZ[j]=0;
+        }
+
     }
 }
 

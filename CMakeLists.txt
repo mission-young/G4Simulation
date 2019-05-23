@@ -43,10 +43,16 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
+file(GLOB linkdef ${PROJECT_SOURCE_DIR}/include/linkdef.h)
+
+add_custom_command(OUTPUT userDict.cxx
+    PRE_BUILD
+    COMMAND rootcint -f userDict.cxx -c  ${linkdef})
+#add_library(userDict SHARED userDict.cxx)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(${PROJECT_NAME} main.cc ${sources} ${headers})
+add_executable(${PROJECT_NAME} main.cc  ${sources} ${headers})
 target_link_libraries(${PROJECT_NAME} ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
@@ -76,6 +82,6 @@ endforeach()
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+#install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 

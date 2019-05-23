@@ -60,12 +60,18 @@ G4bool SensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *history)
 void SensitiveDetector::EndOfEvent(G4HCofThisEvent *hitCollection)
 {
 
-  if(verboseLevel>1){
+ if(verboseLevel>1){
         G4int nofHits=fHitsCollection->entries();
         G4cout<<G4endl
              <<"------->Hits Collection: in this event they are "<<nofHits
             <<" hits in the tracker chambers: "<<G4endl;
-        for (G4int i=0;i<nofHits;i++) {if((*fHitsCollection)[i]->GetIsHit()) G4cout<<(*fHitsCollection)[i]->GetXid()<<'\t'<<(*fHitsCollection)[i]->GetYid()<<G4endl;}
+        for (G4int i=0;i<nofHits;i++) {
+            if((*fHitsCollection)[i]->GetIsHit())
+                G4cout<<(*fHitsCollection)[i]->GetXid()<<'\t'
+                       <<(*fHitsCollection)[i]->GetYid()<<'\t'
+                       <<(*fHitsCollection)[i]->GetEdep()<<'\t'
+                       <<G4endl;
+        }
  }
 }
 
