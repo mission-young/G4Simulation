@@ -40,6 +40,9 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 //    rootManager->SetOpf();
 //    rootManager->SetOpt();
     TTree *tree=rootManager->GetOpt();
+//    tree->Branch("d0",&d[0]);
+//    tree->Branch("d1",&d[1]);
+//    tree->Branch("d2",&d[2]);
 //    tree->Branch("d0xid",&d[0].xid,TString::Format("d[0].xid[%d]/I",maxhit).Data());
 //    tree->Branch("d0yid",&d[0].yid,TString::Format("d[0].yid[%d]/I",maxhit).Data());
 //    tree->Branch("d0trackid",&d[0].trackID,TString::Format("d[0].trackID[%d]/I",maxhit).Data());
@@ -95,7 +98,6 @@ void RunAction::clear()
             d[i].posY[j]=0;
             d[i].posZ[j]=0;
         }
-
     }
 }
 

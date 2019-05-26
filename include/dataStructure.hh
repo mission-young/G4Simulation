@@ -2,6 +2,8 @@
 #define DATASTRUCTURE_HH
 
 #define maxhit 10
+#include "TROOT.h"
+#include "TObject.h"
 class det{
 
 public:
@@ -13,6 +15,6 @@ public:
     double posX[maxhit];
     double posY[maxhit];
     double posZ[maxhit];
-   // ClassDef(det,2);
+   ClassDef(det,2);
 };
 #endif // DATASTRUCTURE_HH

@@ -29,6 +29,7 @@ class RunAction : public G4UserRunAction
 
 public:
     detInfo d[3];
+    det dd[3];
     void clear();
 
 };
