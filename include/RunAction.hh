@@ -8,16 +8,16 @@
 #include "G4AccumulableManager.hh"
 #include "dataStructure.hh"
 class G4Run;
-struct detInfo{
-int eventID[maxhit];
-int trackID[maxhit];
-int xid[maxhit];
-int yid[maxhit];
-double eDep[maxhit];
-double posX[maxhit];
-double posY[maxhit];
-double posZ[maxhit];
-};
+//struct detInfo{
+//int eventID[maxhit];
+//int trackID[maxhit];
+//int xid[maxhit];
+//int yid[maxhit];
+//double eDep[maxhit];
+//double posX[maxhit];
+//double posY[maxhit];
+//double posZ[maxhit];
+//};
 class RunAction : public G4UserRunAction
 {
   public:
@@ -28,8 +28,13 @@ class RunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
 
 public:
-    detInfo d[3];
-    det dd[3];
+//    detInfo d[3];
+//    det dd[3];
+    double de[3][maxhit];
+    double dx[3][maxhit];
+    double dy[3][maxhit];
+    double dz[3][maxhit];
+
     void clear();
 
 };

@@ -4,17 +4,17 @@
 #define maxhit 10
 #include "TROOT.h"
 #include "TObject.h"
-class det{
+//class det{
 
-public:
-    int eventID[maxhit];
-    int trackID[maxhit];
-    int xid[maxhit];
-    int yid[maxhit];
-    double eDep[maxhit];
-    double posX[maxhit];
-    double posY[maxhit];
-    double posZ[maxhit];
-   ClassDef(det,2);
-};
+//public:
+//    int eventID[maxhit];
+//    int trackID[maxhit];
+//    int xid[maxhit];
+//    int yid[maxhit];
+//    double eDep[maxhit];
+//    double posX[maxhit];
+//    double posY[maxhit];
+//    double posZ[maxhit];
+//   ClassDef(det,2);
+//};
 #endif // DATASTRUCTURE_HH

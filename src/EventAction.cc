@@ -96,6 +96,12 @@ void EventAction::EndOfEventAction(const G4Event* event)
 //            runAction->d[j].posY[i]=aHit[j]->GetPos().y();
 //            runAction->d[j].posZ[i]=aHit[j]->GetPos().z();
 //        }
+        for(int j=0;j<3;j++){
+            runAction->de[j][i]=aHit[j]->GetEdep();
+            runAction->dx[j][i]=aHit[j]->GetPos().x();
+            runAction->dy[j][i]=aHit[j]->GetPos().y();
+            runAction->dz[j][i]=aHit[j]->GetPos().z();
+        }
 
     }
     RootIO *rootManager=RootIO::GetInstance();

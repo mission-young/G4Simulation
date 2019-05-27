@@ -43,11 +43,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
-file(GLOB linkdef ${PROJECT_SOURCE_DIR}/include/linkdef.h)
+#file(GLOB linkdef ${PROJECT_SOURCE_DIR}/include/linkdef.h)
 
-add_custom_command(OUTPUT userDict.cxx
-    PRE_BUILD
-    COMMAND rootcint -f userDict.cxx -c  ${linkdef})
+#add_custom_command(OUTPUT userDict.cxx
+#    PRE_BUILD
+#    COMMAND rootcint -f userDict.cxx -c  ${linkdef})
 #add_library(userDict SHARED userDict.cxx)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
