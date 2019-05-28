@@ -60,10 +60,10 @@ void RunAction::clear()
 {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < maxhit; ++j) {
-            de[i][j]=0;
-            dx[i][j]=0;
-            dy[i][j]=0;
-            dz[i][j]=0;
+            de[i][j]=-1;
+            dx[i][j]=-999;
+            dy[i][j]=-999;
+            dz[i][j]=-999;
         }
     }
 }

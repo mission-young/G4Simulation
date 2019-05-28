@@ -10,7 +10,7 @@
 #include "G4RunManager.hh"
 G4ThreadLocal G4Allocator<SDHit>* HitAllocator=nullptr;
 
-SDHit::SDHit():G4VHit(),fCopyID(-1),fIsHit(false),fEventID(-1),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector()),fxid(-1),fyid(-1)
+SDHit::SDHit():G4VHit(),fCopyID(-1),fIsHit(false),fEventID(-1),fTrackID(-1),fEdep(0.),fPos(G4ThreeVector(-999,-999,-999)),fxid(-1),fyid(-1)
 {
 
 }

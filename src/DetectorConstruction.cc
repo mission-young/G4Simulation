@@ -299,7 +299,7 @@ void DetectorConstruction::DefineVolumes()
                       false,
                       0,
                       fCheckOverLaps);
-   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,40*um,100*um,100*um);
+   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,80*um,100*um,100*um);
    new G4PVPlacement(nullptr,
                      G4ThreeVector(0,0,19*mm),
                      DSSD40,
