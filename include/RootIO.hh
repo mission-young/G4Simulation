@@ -5,7 +5,8 @@
 #include "TFile.h"
 #include "TSystem.h"
 #include "TTree.h"
-
+#include "TRandom3.h"
+#include "TH3F.h"
 
 class RootIO
 {
@@ -25,6 +26,7 @@ private:
     TFile *opf;
     TTree *ipt;
     TTree *opt;
+
 
 };
 

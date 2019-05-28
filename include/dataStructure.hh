@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_HH
 #define DATASTRUCTURE_HH
 
-#define maxhit 10
+#define maxhit 1
 #include "TROOT.h"
 #include "TObject.h"
 //class det{

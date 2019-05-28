@@ -5,6 +5,7 @@
 #include "globals.hh"
 #include "G4ThreeVector.hh"
 #include "G4GeneralParticleSource.hh"
+#include "RootIO.hh"
 class G4ParticleGun;
 class G4Event;
 
@@ -26,6 +27,8 @@ private:
 private:
   G4ParticleGun*  fParticleGun; // G4 particle gun
   G4GeneralParticleSource *fGeneralParticleGun;
+
+  TH3F *pos3D;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

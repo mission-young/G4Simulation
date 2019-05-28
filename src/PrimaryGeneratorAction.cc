@@ -22,6 +22,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
     fGeneralParticleGun=new G4GeneralParticleSource();
 
+    RootIO* rootManager=RootIO::GetInstance();
+    rootManager->SetIpf("pos2.root");
+    pos3D=(TH3F*)rootManager->GetIpf()->Get("hnew");
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -55,7 +58,9 @@ void PrimaryGeneratorAction::DefineParticleGun(G4int particleNumber, G4String pa
 void PrimaryGeneratorAction::DefineParticleGuns()
 {
 
-    DefineParticleGun(maxhit,"proton",G4ThreeVector(0,0,-5*mm),G4RandomDirection(0.98), G4UniformRand()*10*MeV);
+    double x,y,z;
+    pos3D->GetRandom3(x,y,z);
+    DefineParticleGun(maxhit,"proton",G4ThreeVector(x*um,y*um,z*um),G4RandomDirection(), 5*MeV);
 
   //fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));
     //fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.4,0.2,1.1).unit());

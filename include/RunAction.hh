@@ -7,6 +7,7 @@
 #include "G4Accumulable.hh"
 #include "G4AccumulableManager.hh"
 #include "dataStructure.hh"
+#include "RootIO.hh"
 class G4Run;
 //struct detInfo{
 //int eventID[maxhit];
@@ -34,6 +35,7 @@ public:
     double dx[3][maxhit];
     double dy[3][maxhit];
     double dz[3][maxhit];
+
 
     void clear();
 
