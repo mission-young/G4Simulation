@@ -34,7 +34,7 @@ include(${ROOT_USE_FILE})
 #
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include)
-
+include_directories(/usr/local/opt/rapidjson/include)
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -68,6 +68,7 @@ set(${PROJECT_NAME}_SCRIPTS
   run2.mac
   vis.mac
   README.md
+  conf.json
   )
 
 foreach(_script ${${PROJECT_NAME}_SCRIPTS})

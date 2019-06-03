@@ -4,6 +4,25 @@
 #define maxhit 1
 #include "TROOT.h"
 #include "TObject.h"
+#include "rapidjson/document.h"
+#include "rapidjson/istreamwrapper.h"
+#include <fstream>
+#include "G4ios.hh"
+
+using namespace  std;
+using namespace rapidjson;
+static double energy;
+static double depth;
+static void loadconf(){
+    ifstream ifs("./conf.json");
+    IStreamWrapper isw(ifs);
+
+    Document d;
+    d.ParseStream(isw);
+    energy=d["particle"]["proton"]["energy"].GetDouble();
+    depth=d["particle"]["proton"]["z"].GetDouble();
+    ifs.close();
+}
 //class det{
 
 //public:

@@ -261,7 +261,7 @@ G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int 
 {
     G4Box* solidSi=new G4Box("Si",xl/2,yl/2,zl/2);
     G4LogicalVolume *logicSi=new G4LogicalVolume(solidSi,G4Material::GetMaterial("G4_Si"),name+"_single");
-    G4Box* solidDSSD=new G4Box("DSSD",xn*(xl+xd)/2,yn*(xl+yd)/2,zl/2);
+    G4Box* solidDSSD=new G4Box("DSSD",(xn*(xl+xd)-xd)/2,(yn*(xl+yd)-yd)/2,zl/2);
 
     G4LogicalVolume* logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("Galactic"),name);
     G4double x0=-(xn-1)*(xd+xl)/2;
@@ -290,18 +290,18 @@ void DetectorConstruction::DefineVolumes()
 {
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
-    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,142*um,100*um,100*um);
+    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,300*um,100*um,100*um);
     new G4PVPlacement(nullptr,
-                      G4ThreeVector(0,0,0),
+                      G4ThreeVector(0,0,300*um/2),
                       DSSD142,
                       "DSSD142",
                       logicWorld,
                       false,
                       0,
                       fCheckOverLaps);
-   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,80*um,100*um,100*um);
+   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,40*um,100*um,100*um);
    new G4PVPlacement(nullptr,
-                     G4ThreeVector(0,0,19*mm),
+                     G4ThreeVector(0,0,19*mm+40*um/2),
                      DSSD40,
                      "DSSD40",
                      logicWorld,
@@ -310,7 +310,7 @@ void DetectorConstruction::DefineVolumes()
                      fCheckOverLaps);
    G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,3*mm,3*mm,304*um,100*um,100*um);
    new G4PVPlacement(nullptr,
-                     G4ThreeVector(0,0,38*mm),
+                     G4ThreeVector(0,0,38*mm+304*um/2),
                      DSSD304,
                      "DSSD304",
                      logicWorld,

@@ -53,8 +53,11 @@ void EventAction::EndOfEventAction(const G4Event* event)
     auto DSSD40HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD40HCID));
     auto DSSD304HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD304HCID));
 
-
-
+//    if(DSSD142HitsCollection->entries()>-1) G4cout<<DSSD142HitsCollection->entries()<<G4endl;
+//    SDHit *Hit0=(*DSSD142HitsCollection)[0];
+//    if(Hit0->GetEdep()<0.01){
+//        G4cout<<Hit0->GetTrackID()<<'\t'<<Hit0->GetEventID()<<'\t'<<Hit0->GetXid()<<'\t'<<Hit0->GetYid()<<'\n';
+//    }
     const RunAction *conrunAction=static_cast<const RunAction*>(G4RunManager::GetRunManager()->GetUserRunAction());
     RunAction *runAction=const_cast<RunAction*>(conrunAction);
 
@@ -102,8 +105,11 @@ void EventAction::EndOfEventAction(const G4Event* event)
             runAction->dy[j][i]=aHit[j]->GetPos().y();
             runAction->dz[j][i]=aHit[j]->GetPos().z();
         }
-
+//        if(runAction->de[0][0]<0.001){
+//            G4cout<<aHit[0]->GetTrackID()<<'\t'<<aHit[0]->GetEventID()<<'\t'<<aHit[0]->GetXid()<<'\t'<<aHit[0]->GetYid()<<'\n';
+//        }
     }
+
     RootIO *rootManager=RootIO::GetInstance();
     rootManager->GetOpt()->Fill();
 }

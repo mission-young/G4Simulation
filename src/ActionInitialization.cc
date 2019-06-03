@@ -7,7 +7,9 @@
 
 ActionInitialization::ActionInitialization()
  : G4VUserActionInitialization()
-{}
+{
+
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

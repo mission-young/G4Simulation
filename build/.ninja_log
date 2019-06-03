@@ -1,0 +1,15 @@
+# ninja log v5
+11	3920	1559538113633268794	CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o	da0e5656dd705948
+8	4069	1559538113776175004	CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o	b598e83bb403e971
+5	4199	1559538113922140488	CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o	c9540777eaa0a91c
+3	4782	1559538114481652054	CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o	b9a296ebdec37de3
+1	4829	1559538114509368202	CMakeFiles/G4Simulation.dir/main.cc.o	70af479f5b9d6aa0
+4071	6703	1559538116425914118	CMakeFiles/G4Simulation.dir/src/RootIO.cc.o	cc4c99312608f22f
+4832	7774	1559538117497229438	CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o	d416551fed5e0a5c
+4785	8392	1559538118110332077	CMakeFiles/G4Simulation.dir/src/SDHit.cc.o	5066cd169ec2e7c3
+6703	9058	1559538118781823846	CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o	1e190f18a68e8f06
+3925	9322	1559538119037701668	CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o	b0d9460de77f4cf9
+7	9973	1559538119678058345	CMakeFiles/G4Simulation.dir/src/EventAction.cc.o	f7644e8c9f98267a
+7774	10822	1559538120542879198	CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o	94d1ad5a370c0a14
+4200	11439	1559538121156297913	CMakeFiles/G4Simulation.dir/src/RunAction.cc.o	7af9ef707bf3e751
+11439	11617	1559538121351167779	G4Simulation	3a12fcb9a5d6f3b4

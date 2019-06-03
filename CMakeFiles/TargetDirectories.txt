@@ -1,3 +1,0 @@
-/Volumes/data/QtWorkspeace/G4Simulation/CMakeFiles/rebuild_cache.dir
-/Volumes/data/QtWorkspeace/G4Simulation/CMakeFiles/edit_cache.dir
-/Volumes/data/QtWorkspeace/G4Simulation/CMakeFiles/G4Simulation.dir
