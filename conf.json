@@ -8,7 +8,7 @@
             "energyRandom":true,
             "energyRangeMin":1,
             "energyRangeMax":10,
-            "energy":0.5,
+            "energy":2,
             "xRandom":true,
             "xRangeMin":-1,
             "xRangeMax":1,

@@ -1,3 +1,3 @@
-/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/rebuild_cache.dir
-/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/edit_cache.dir
-/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir
+/Volumes/data/QtWorkspeace/G4Simulation/build/CMakeFiles/rebuild_cache.dir
+/Volumes/data/QtWorkspeace/G4Simulation/build/CMakeFiles/edit_cache.dir
+/Volumes/data/QtWorkspeace/G4Simulation/build/CMakeFiles/G4Simulation.dir
