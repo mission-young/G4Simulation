@@ -1,4 +1,4 @@
-# Install script for directory: /Volumes/data/QtWorkspeace/G4Simulation
+# Install script for directory: /Volumes/AppleData/CodeProject/G4Simulation
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Volumes/data/QtWorkspeace/G4Simulation/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Volumes/AppleData/CodeProject/G4Simulation/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
