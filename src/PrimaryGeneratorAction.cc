@@ -66,7 +66,7 @@ void PrimaryGeneratorAction::DefineParticleGuns()
 
     double x,y;
     double z=500;
-    while(z<19000||z>19100){
+    while(z<38000){
         pos3D->GetRandom3(x,y,z);
     }
 
