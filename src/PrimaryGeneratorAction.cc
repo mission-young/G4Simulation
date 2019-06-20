@@ -66,11 +66,11 @@ void PrimaryGeneratorAction::DefineParticleGuns()
 
     double x,y;
     double z=500;
-    while(z<38000){
+    while(z<19000||z>19040){
         pos3D->GetRandom3(x,y,z);
     }
 
-    DefineParticleGun(maxhit,"proton",G4ThreeVector(x*um,y*um,depth*um),G4RandomDirection(), energy*MeV);
+    DefineParticleGun(maxhit,"proton",G4ThreeVector(x*um,y*um,(z-19000+142)*um),G4RandomDirection(), energy*MeV);
 
   //fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));
     //fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.4,0.2,1.1).unit());

@@ -31,10 +31,10 @@ class RunAction : public G4UserRunAction
 public:
 //    detInfo d[3];
 //    det dd[3];
-    double de[3][maxhit];
-    double dx[3][maxhit];
-    double dy[3][maxhit];
-    double dz[3][maxhit];
+    double de[1][maxhit];
+    double dx[1][maxhit];
+    double dy[1][maxhit];
+    double dz[1][maxhit];
 
 
     void clear();

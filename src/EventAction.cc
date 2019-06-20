@@ -40,18 +40,21 @@ void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 void EventAction::EndOfEventAction(const G4Event* event)
 {
 
-    static int DSSD142HCID=-1;
-    static int DSSD40HCID=-1;
-    static int DSSD304HCID=-1;
+//    static int DSSD142HCID=-1;
+//    static int DSSD40HCID=-1;
+//    static int DSSD304HCID=-1;
 
-    if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142HitsCollection");
-    if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40HitsCollection");
-    if(DSSD304HCID<0) DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304HitsCollection");
+//    if(DSSD142HCID<0) DSSD142HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD142HitsCollection");
+//    if(DSSD40HCID<0) DSSD40HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD40HitsCollection");
+//    if(DSSD304HCID<0) DSSD304HCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSD304HitsCollection");
 
+static int DSSDHCID=-1;
+if(DSSDHCID<0) DSSDHCID=G4SDManager::GetSDMpointer()->GetCollectionID("DSSDHitsCollection");
+auto DSSDHitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSDHCID));
 
-    auto DSSD142HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD142HCID));
-    auto DSSD40HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD40HCID));
-    auto DSSD304HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD304HCID));
+//    auto DSSD142HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD142HCID));
+//    auto DSSD40HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD40HCID));
+//    auto DSSD304HitsCollection=static_cast<HitsCollection*>(event->GetHCofThisEvent()->GetHC(DSSD304HCID));
 
 //    if(DSSD142HitsCollection->entries()>-1) G4cout<<DSSD142HitsCollection->entries()<<G4endl;
 //    SDHit *Hit0=(*DSSD142HitsCollection)[0];
@@ -66,50 +69,51 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
 
     SDHit *nullHit=new SDHit();
-    for (int i = 0; i < maxhit; ++i) {
-        SDHit *aHit[3]={nullptr,nullptr,nullptr};
-        for (int j = 0; j < DSSD142HitsCollection->entries(); ++j) {
-            if((*DSSD142HitsCollection)[j]->GetTrackID()==i+1){
-                aHit[0]=(*DSSD142HitsCollection)[j];
-            }
-        }
-        if(aHit[0]==nullptr) aHit[0]=nullHit;
-
-        for (int j = 0; j < DSSD40HitsCollection->entries(); ++j) {
-            if((*DSSD40HitsCollection)[j]->GetTrackID()==i+1){
-                aHit[1]=(*DSSD40HitsCollection)[j];
-            }
-        }
-
-        if(aHit[1]==nullptr) aHit[1]=nullHit;
-        for (int j = 0; j < DSSD304HitsCollection->entries(); ++j) {
-            if((*DSSD304HitsCollection)[j]->GetTrackID()==i+1){
-                aHit[2]=(*DSSD304HitsCollection)[j];
-            }
-        }
-        if(aHit[2]==nullptr) aHit[2]=nullHit;
-
-//        for (int j = 0; j < 3; ++j) {
-//            runAction->d[j].xid[i]=aHit[j]->GetXid();
-//            runAction->d[j].yid[i]=aHit[j]->GetYid();
-//            runAction->d[j].eventID[i]=aHit[j]->GetEventID();
-//            runAction->d[j].trackID[i]=aHit[j]->GetTrackID();
-//            runAction->d[j].eDep[i]=aHit[j]->GetEdep();
-//            runAction->d[j].posX[i]=aHit[j]->GetPos().x();
-//            runAction->d[j].posY[i]=aHit[j]->GetPos().y();
-//            runAction->d[j].posZ[i]=aHit[j]->GetPos().z();
+//    for (int i = 0; i < maxhit; ++i) {
+//        SDHit *aHit[3]={nullptr,nullptr,nullptr};
+//        for (int j = 0; j < DSSD142HitsCollection->entries(); ++j) {
+//            if((*DSSD142HitsCollection)[j]->GetTrackID()==i+1){
+//                aHit[0]=(*DSSD142HitsCollection)[j];
+//            }
 //        }
-        for(int j=0;j<3;j++){
-            runAction->de[j][i]=aHit[j]->GetEdep();
-            runAction->dx[j][i]=aHit[j]->GetPos().x();
-            runAction->dy[j][i]=aHit[j]->GetPos().y();
-            runAction->dz[j][i]=aHit[j]->GetPos().z();
-        }
-//        if(runAction->de[0][0]<0.001){
-//            G4cout<<aHit[0]->GetTrackID()<<'\t'<<aHit[0]->GetEventID()<<'\t'<<aHit[0]->GetXid()<<'\t'<<aHit[0]->GetYid()<<'\n';
+//        if(aHit[0]==nullptr) aHit[0]=nullHit;
+
+//        for (int j = 0; j < DSSD40HitsCollection->entries(); ++j) {
+//            if((*DSSD40HitsCollection)[j]->GetTrackID()==i+1){
+//                aHit[1]=(*DSSD40HitsCollection)[j];
+//            }
 //        }
+
+//        if(aHit[1]==nullptr) aHit[1]=nullHit;
+//        for (int j = 0; j < DSSD304HitsCollection->entries(); ++j) {
+//            if((*DSSD304HitsCollection)[j]->GetTrackID()==i+1){
+//                aHit[2]=(*DSSD304HitsCollection)[j];
+//            }
+//        }
+//        if(aHit[2]==nullptr) aHit[2]=nullHit;
+
+
+//        for(int j=0;j<3;j++){
+//            runAction->de[j][i]=aHit[j]->GetEdep();
+//            runAction->dx[j][i]=aHit[j]->GetPos().x();
+//            runAction->dy[j][i]=aHit[j]->GetPos().y();
+//            runAction->dz[j][i]=aHit[j]->GetPos().z();
+//        }
+
+//    }
+    for(int i=0;i<maxhit;i++){
+        SDHit *aHit=nullptr;
+        for(int j=0;j<DSSDHitsCollection->entries();++j){
+            if((*DSSDHitsCollection)[j]->GetTrackID()==i+1){
+                aHit=(*DSSDHitsCollection)[j];
+            }
+        }
+        if(aHit==nullptr) aHit=nullHit;
+        runAction->de[0][i]=aHit->GetEdep();
+        runAction->dx[0][i]=aHit->GetPos().x();
+        runAction->dy[0][i]=aHit->GetPos().y();
+        runAction->dz[0][i]=aHit->GetPos().z();
     }
-
     RootIO *rootManager=RootIO::GetInstance();
     rootManager->GetOpt()->Fill();
 }

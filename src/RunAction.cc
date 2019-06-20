@@ -37,10 +37,10 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
     rootManager->SetOpt("tree","simulation");
 
         TTree *tree=rootManager->GetOpt();
-        tree->Branch("de",de,TString::Format("de[3][%d]/D",maxhit).Data());
-        tree->Branch("dx",dx,TString::Format("dx[3][%d]/D",maxhit).Data());
-        tree->Branch("dy",dy,TString::Format("dy[3][%d]/D",maxhit).Data());
-        tree->Branch("dz",dz,TString::Format("dz[3][%d]/D",maxhit).Data());
+        tree->Branch("de",de,TString::Format("de[1][%d]/D",maxhit).Data());
+        tree->Branch("dx",dx,TString::Format("dx[1][%d]/D",maxhit).Data());
+        tree->Branch("dy",dy,TString::Format("dy[1][%d]/D",maxhit).Data());
+        tree->Branch("dz",dz,TString::Format("dz[1][%d]/D",maxhit).Data());
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

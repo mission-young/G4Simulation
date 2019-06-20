@@ -226,19 +226,22 @@ void DetectorConstruction::DefineSensitiveDetector()
 {
     G4SDManager::GetSDMpointer()->SetVerboseLevel(1);
 
-    auto DSSD142=new SensitiveDetector("DSSD142SD","DSSD142HitsCollection",16*16);
-    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
-    SetSensitiveDetector("DSSD142_single",DSSD142);
+    auto DSSD=new SensitiveDetector("DSSDSD","DSSDHitsCollection",1*1);
+    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD);
+    SetSensitiveDetector("DSSD",DSSD);
+//    auto DSSD142=new SensitiveDetector("DSSD142SD","DSSD142HitsCollection",16*16);
+//    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
+//    SetSensitiveDetector("DSSD142_single",DSSD142);
 
 
-    auto DSSD40=new SensitiveDetector("DSSD40SD","DSSD40HitsCollection",16*16);
-    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD40);
-    SetSensitiveDetector("DSSD40_single",DSSD40);
+//    auto DSSD40=new SensitiveDetector("DSSD40SD","DSSD40HitsCollection",16*16);
+//    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD40);
+//    SetSensitiveDetector("DSSD40_single",DSSD40);
 
 
-    auto DSSD304=new SensitiveDetector("DSSD304SD","DSSD304HitsCollection",16*16);
-    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD304);
-    SetSensitiveDetector("DSSD304_single",DSSD304);
+//    auto DSSD304=new SensitiveDetector("DSSD304SD","DSSD304HitsCollection",16*16);
+//    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD304);
+//    SetSensitiveDetector("DSSD304_single",DSSD304);
 }
 
 void DetectorConstruction::DefineMagField()
@@ -290,33 +293,45 @@ void DetectorConstruction::DefineVolumes()
 {
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
-    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,300*um,100*um,100*um);
+
+    G4Box *solidDSSD=new G4Box("Si",49.5*mm/2,49.5*mm/2,486*um/2);
+    G4LogicalVolume *logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("G4_Si"),"DSSD");
     new G4PVPlacement(nullptr,
-                      G4ThreeVector(0,0,300*um/2),
-                      DSSD142,
-                      "DSSD142",
+                      G4ThreeVector(0,0,486*um/2),
+                      logicDSSD,
+                      "DSSD",
                       logicWorld,
                       false,
                       0,
                       fCheckOverLaps);
-   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,40*um,100*um,100*um);
-   new G4PVPlacement(nullptr,
-                     G4ThreeVector(0,0,19*mm+40*um/2),
-                     DSSD40,
-                     "DSSD40",
-                     logicWorld,
-                     false,
-                     0,
-                     fCheckOverLaps);
-   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,3*mm,3*mm,304*um,100*um,100*um);
-   new G4PVPlacement(nullptr,
-                     G4ThreeVector(0,0,38*mm+304*um/2),
-                     DSSD304,
-                     "DSSD304",
-                     logicWorld,
-                     false,
-                     0,
-                     fCheckOverLaps);
+
+//    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,300*um,100*um,100*um);
+//    new G4PVPlacement(nullptr,
+//                      G4ThreeVector(0,0,300*um/2),
+//                      DSSD142,
+//                      "DSSD142",
+//                      logicWorld,
+//                      false,
+//                      0,
+//                      fCheckOverLaps);
+//   G4LogicalVolume* DSSD40=DefineDSSD("DSSD40",16,16,3*mm,3*mm,40*um,100*um,100*um);
+//   new G4PVPlacement(nullptr,
+//                     G4ThreeVector(0,0,19*mm+40*um/2),
+//                     DSSD40,
+//                     "DSSD40",
+//                     logicWorld,
+//                     false,
+//                     0,
+//                     fCheckOverLaps);
+//   G4LogicalVolume* DSSD304=DefineDSSD("DSSD304",16,16,3*mm,3*mm,304*um,100*um,100*um);
+//   new G4PVPlacement(nullptr,
+//                     G4ThreeVector(0,0,38*mm+304*um/2),
+//                     DSSD304,
+//                     "DSSD304",
+//                     logicWorld,
+//                     false,
+//                     0,
+//                     fCheckOverLaps);
 
 }
 
