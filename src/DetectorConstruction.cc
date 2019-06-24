@@ -226,9 +226,15 @@ void DetectorConstruction::DefineSensitiveDetector()
 {
     G4SDManager::GetSDMpointer()->SetVerboseLevel(1);
 
-    auto DSSD=new SensitiveDetector("DSSDSD","DSSDHitsCollection",1*1);
-    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD);
-    SetSensitiveDetector("DSSD",DSSD);
+    auto DSSD142=new SensitiveDetector("DSSDSD142","DSSD142HitsCollection",1*1);
+    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
+    SetSensitiveDetector("DSSD142",DSSD142);
+    auto DSSD40=new SensitiveDetector("DSSDSD40","DSSD40HitsCollection",1*1);
+    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD40);
+    SetSensitiveDetector("DSSD40",DSSD40);
+    auto DSSD304=new SensitiveDetector("DSSDSD304","DSSD304HitsCollection",1*1);
+    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD304);
+    SetSensitiveDetector("DSSD304",DSSD304);
 //    auto DSSD142=new SensitiveDetector("DSSD142SD","DSSD142HitsCollection",16*16);
 //    G4SDManager::GetSDMpointer()->AddNewDetector(DSSD142);
 //    SetSensitiveDetector("DSSD142_single",DSSD142);
@@ -294,17 +300,37 @@ void DetectorConstruction::DefineVolumes()
     DefineWorldVolume(10*cm,10*cm,10*cm);
     //DefineTargetVolume();
 
-    G4Box *solidDSSD=new G4Box("Si",49.5*mm/2,49.5*mm/2,486*um/2);
-    G4LogicalVolume *logicDSSD=new G4LogicalVolume(solidDSSD,G4Material::GetMaterial("G4_Si"),"DSSD");
+    G4Box *solidD142=new G4Box("si",49.5*mm/2,49.5*mm/2,142*um/2);
+    G4LogicalVolume *DSSD142=new G4LogicalVolume(solidD142,G4Material::GetMaterial("G4_Si"),"DSSD142");
     new G4PVPlacement(nullptr,
-                      G4ThreeVector(0,0,486*um/2),
-                      logicDSSD,
-                      "DSSD",
+                      G4ThreeVector(0,0,142*um/2),
+                      DSSD142,
+                      "DSSD142",
                       logicWorld,
                       false,
                       0,
                       fCheckOverLaps);
 
+    G4Box *solidD40=new G4Box("si",49.5*mm/2,49.5*mm/2,40*um/2);
+    G4LogicalVolume *DSSD40=new G4LogicalVolume(solidD40,G4Material::GetMaterial("G4_Si"),"DSSD40");
+    new G4PVPlacement(nullptr,
+                      G4ThreeVector(0,0,142*um+40*um/2),
+                      DSSD40,
+                      "DSSD40",
+                      logicWorld,
+                      false,
+                      0,
+                      fCheckOverLaps);
+    G4Box *solidD304=new G4Box("si",49.5*mm/2,49.5*mm/2,304*um/2);
+    G4LogicalVolume *DSSD304=new G4LogicalVolume(solidD304,G4Material::GetMaterial("G4_Si"),"DSSD304");
+    new G4PVPlacement(nullptr,
+                      G4ThreeVector(0,0,142*um+40*um+304*um/2),
+                      DSSD304,
+                      "DSSD304",
+                      logicWorld,
+                      false,
+                      0,
+                      fCheckOverLaps);
 //    G4LogicalVolume* DSSD142 = DefineDSSD("DSSD142",16,16,3*mm,3*mm,300*um,100*um,100*um);
 //    new G4PVPlacement(nullptr,
 //                      G4ThreeVector(0,0,300*um/2),
