@@ -60,171 +60,171 @@ include CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/main.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/main.cc.o: ../main.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/G4Simulation.dir/main.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/main.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/main.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/main.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/main.cc
 
 CMakeFiles/G4Simulation.dir/main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/main.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/main.cc > CMakeFiles/G4Simulation.dir/main.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/main.cc > CMakeFiles/G4Simulation.dir/main.cc.i
 
 CMakeFiles/G4Simulation.dir/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/main.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/main.cc -o CMakeFiles/G4Simulation.dir/main.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/main.cc -o CMakeFiles/G4Simulation.dir/main.cc.s
 
 CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o: ../src/ActionInitialization.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc
 
 CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc > CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc > CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.i
 
 CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc -o CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc -o CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.s
 
 CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o: ../src/DetectorConstruction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc
 
 CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc > CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc > CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc -o CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc -o CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.s
 
 CMakeFiles/G4Simulation.dir/src/EventAction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/EventAction.cc.o: ../src/EventAction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/G4Simulation.dir/src/EventAction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/EventAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/EventAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc
 
 CMakeFiles/G4Simulation.dir/src/EventAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/EventAction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc > CMakeFiles/G4Simulation.dir/src/EventAction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc > CMakeFiles/G4Simulation.dir/src/EventAction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/EventAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/EventAction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc -o CMakeFiles/G4Simulation.dir/src/EventAction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc -o CMakeFiles/G4Simulation.dir/src/EventAction.cc.s
 
 CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o: ../src/MoDularPhysicsList.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc
 
 CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc > CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc > CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.i
 
 CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc -o CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc -o CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.s
 
 CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o: ../src/PhysicsList.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc
 
 CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc > CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc > CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.i
 
 CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc -o CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc -o CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.s
 
 CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o: ../src/PrimaryGeneratorAction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc
 
 CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc > CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc > CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc -o CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc -o CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.s
 
 CMakeFiles/G4Simulation.dir/src/RootIO.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/RootIO.cc.o: ../src/RootIO.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/G4Simulation.dir/src/RootIO.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/RootIO.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/RootIO.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc
 
 CMakeFiles/G4Simulation.dir/src/RootIO.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/RootIO.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc > CMakeFiles/G4Simulation.dir/src/RootIO.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc > CMakeFiles/G4Simulation.dir/src/RootIO.cc.i
 
 CMakeFiles/G4Simulation.dir/src/RootIO.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/RootIO.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc -o CMakeFiles/G4Simulation.dir/src/RootIO.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc -o CMakeFiles/G4Simulation.dir/src/RootIO.cc.s
 
 CMakeFiles/G4Simulation.dir/src/RunAction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/RunAction.cc.o: ../src/RunAction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/G4Simulation.dir/src/RunAction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/RunAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/RunAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc
 
 CMakeFiles/G4Simulation.dir/src/RunAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/RunAction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc > CMakeFiles/G4Simulation.dir/src/RunAction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc > CMakeFiles/G4Simulation.dir/src/RunAction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/RunAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/RunAction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc -o CMakeFiles/G4Simulation.dir/src/RunAction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc -o CMakeFiles/G4Simulation.dir/src/RunAction.cc.s
 
 CMakeFiles/G4Simulation.dir/src/SDHit.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/SDHit.cc.o: ../src/SDHit.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/G4Simulation.dir/src/SDHit.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SDHit.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SDHit.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc
 
 CMakeFiles/G4Simulation.dir/src/SDHit.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/SDHit.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc > CMakeFiles/G4Simulation.dir/src/SDHit.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc > CMakeFiles/G4Simulation.dir/src/SDHit.cc.i
 
 CMakeFiles/G4Simulation.dir/src/SDHit.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/SDHit.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc -o CMakeFiles/G4Simulation.dir/src/SDHit.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc -o CMakeFiles/G4Simulation.dir/src/SDHit.cc.s
 
 CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o: ../src/SensitiveDetector.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc
 
 CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc > CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc > CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.i
 
 CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc -o CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc -o CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.s
 
 CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o: ../src/StackingAction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc
 
 CMakeFiles/G4Simulation.dir/src/StackingAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/StackingAction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc > CMakeFiles/G4Simulation.dir/src/StackingAction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc > CMakeFiles/G4Simulation.dir/src/StackingAction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/StackingAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/StackingAction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc -o CMakeFiles/G4Simulation.dir/src/StackingAction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc -o CMakeFiles/G4Simulation.dir/src/StackingAction.cc.s
 
 CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o: CMakeFiles/G4Simulation.dir/flags.make
 CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o -c /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc
 
 CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc > CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc > CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.i
 
 CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc -o CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc -o CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.s
 
 # Object files for target G4Simulation
 G4Simulation_OBJECTS = \

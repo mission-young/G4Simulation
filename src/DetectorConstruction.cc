@@ -314,7 +314,7 @@ void DetectorConstruction::DefineVolumes()
     G4Box *solidD40=new G4Box("si",49.5*mm/2,49.5*mm/2,40*um/2);
     G4LogicalVolume *DSSD40=new G4LogicalVolume(solidD40,G4Material::GetMaterial("G4_Si"),"DSSD40");
     new G4PVPlacement(nullptr,
-                      G4ThreeVector(0,0,142*um+40*um/2),
+                      G4ThreeVector(0,0,19*mm+40*um/2),
                       DSSD40,
                       "DSSD40",
                       logicWorld,
@@ -324,7 +324,7 @@ void DetectorConstruction::DefineVolumes()
     G4Box *solidD304=new G4Box("si",49.5*mm/2,49.5*mm/2,304*um/2);
     G4LogicalVolume *DSSD304=new G4LogicalVolume(solidD304,G4Material::GetMaterial("G4_Si"),"DSSD304");
     new G4PVPlacement(nullptr,
-                      G4ThreeVector(0,0,142*um+40*um+304*um/2),
+                      G4ThreeVector(0,0,38*mm+304*um/2),
                       DSSD304,
                       "DSSD304",
                       logicWorld,
