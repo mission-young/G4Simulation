@@ -1,7 +1,7 @@
 
 #----------------------------------------------------------------------------
 # Setup the project
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 project(G4Simulation)
 
 #----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ include(${ROOT_USE_FILE})
 #
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(/usr/local/opt/rapidjson/include)
+include_directories(/usr/local/opt/rapidjson/*/include)
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project

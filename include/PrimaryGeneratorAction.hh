@@ -29,6 +29,7 @@ private:
   G4GeneralParticleSource *fGeneralParticleGun;
 
   TH3F *pos3D;
+  TH1F *he;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

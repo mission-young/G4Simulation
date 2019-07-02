@@ -4,21 +4,21 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Volumes/AppleData/CodeProject/G4Simulation/main.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/main.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/ActionInitialization.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/DetectorConstruction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/EventAction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/EventAction.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/MoDularPhysicsList.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/PhysicsList.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/PrimaryGeneratorAction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/RootIO.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/RootIO.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/RunAction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/RunAction.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/SDHit.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SDHit.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/SensitiveDetector.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/StackingAction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o"
-  "/Volumes/AppleData/CodeProject/G4Simulation/src/SteppingAction.cc" "/Volumes/AppleData/CodeProject/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/main.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/main.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/ActionInitialization.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/ActionInitialization.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/DetectorConstruction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/DetectorConstruction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/EventAction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/EventAction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/MoDularPhysicsList.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/MoDularPhysicsList.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/PhysicsList.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/PhysicsList.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/PrimaryGeneratorAction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/PrimaryGeneratorAction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/RootIO.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/RootIO.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/RunAction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/RunAction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/SDHit.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SDHit.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/SensitiveDetector.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SensitiveDetector.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/StackingAction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/StackingAction.cc.o"
+  "/Users/yfs-imac-429/Desktop/G4Simulation/src/SteppingAction.cc" "/Users/yfs-imac-429/Desktop/G4Simulation/build/CMakeFiles/G4Simulation.dir/src/SteppingAction.cc.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
@@ -39,19 +39,21 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "QT_OPENGL_LIB"
   "QT_PRINTSUPPORT_LIB"
   "QT_WIDGETS_LIB"
+  "R__HAVE_CONFIG"
   )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/Users/yfs/Downloads/root616x11/include"
+  "/usr/local/opt/root/include/root"
   "../include"
-  "/usr/local/opt/rapidjson/include"
+  "/usr/local/opt/rapidjson/*/include"
   "/usr/local/include/Geant4"
+  "/usr/local/include"
   "/usr/local/opt/qt/lib/QtWidgets.framework"
   "/usr/local/opt/qt/lib/QtWidgets.framework/Headers"
   "/usr/local/opt/qt/lib/QtGui.framework"
   "/usr/local/opt/qt/lib/QtGui.framework/Headers"
-  "/System/Library/Frameworks/OpenGL.framework/Headers"
+  "/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers"
   "/usr/local/opt/qt/lib/QtCore.framework"
   "/usr/local/opt/qt/lib/QtCore.framework/Headers"
   "/usr/local/opt/qt/./mkspecs/macx-clang"

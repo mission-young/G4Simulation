@@ -28,6 +28,9 @@ RootIO* rootManager=RootIO::GetInstance();
     rootManager->SetIpf("pos2.root");
     pos3D=(TH3F*)rootManager->GetIpf()->Get("hnew");
 
+    TFile *edis=new TFile("edis.root");
+    he=(TH1F*)edis->Get("energydis");
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -65,11 +68,13 @@ void PrimaryGeneratorAction::DefineParticleGuns()
 {
 
     double x,y;
-    double z=500;
-    while(z<38000){ //z>19040||z<19000
+    double z=0;
+    x=-100;
+    y=-100;
+    while(z<19000||z>19040){ //z>19040||z<19000
         pos3D->GetRandom3(x,y,z);
     }
-
+   // energy=he->GetRandom();
     DefineParticleGun(maxhit,"proton",G4ThreeVector(x*um,y*um,z*um),G4RandomDirection(), energy*MeV);
 
   //fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));

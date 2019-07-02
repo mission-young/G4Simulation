@@ -297,7 +297,7 @@ G4LogicalVolume* DetectorConstruction::DefineDSSD(G4String name,G4int xn, G4int 
 
 void DetectorConstruction::DefineVolumes()
 {
-    DefineWorldVolume(10*cm,10*cm,10*cm);
+    DefineWorldVolume(100*m,100*m,100*m);
     //DefineTargetVolume();
 
     G4Box *solidD142=new G4Box("si",49.5*mm/2,49.5*mm/2,142*um/2);
