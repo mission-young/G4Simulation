@@ -30,6 +30,7 @@ private:
 
   TH3F *pos3D;
   TH1F *he;
+  TH1F *hbeta;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
