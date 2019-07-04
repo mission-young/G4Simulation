@@ -20,6 +20,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
  : G4VUserPrimaryGeneratorAction(),
    fParticleGun(nullptr)
 {
+
     fGeneralParticleGun=new G4GeneralParticleSource();
 
     loadconf();
@@ -51,14 +52,33 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
     DefineParticleGuns();
+    double x,y;
+    double z=0;
+    x=-100;
+    y=-100;
+    while(z<19000||(z>19040&&z<30000)){ //z>19040||z<19000
+        pos3D->GetRandom3(x,y,z);
+    }
+    double pe=he->GetRandom();
+    double be=hbeta->GetRandom();
+
+
+    DefineParticleGun(1,"e+",G4ThreeVector(x*um,y*um,z*um),G4RandomDirection(), be*GeV);
     fParticleGun->GeneratePrimaryVertex(event);
+
+    DefineParticleGun(1,"proton",G4ThreeVector(x*um,y*um,z*um),G4RandomDirection(), pe*keV);
+    fParticleGun->GeneratePrimaryVertex(event);
+
+
+
     fGeneralParticleGun->GeneratePrimaryVertex(event);
   // This function is called at the begining of event
 }
 
 void PrimaryGeneratorAction::DefineParticleGun(G4int particleNumber, G4String particleName, G4ThreeVector particlePosition, G4ThreeVector particleDirection, G4double particleEnergy)
 {
-        fParticleGun=new G4ParticleGun(particleNumber);// 创建particleNumber个全同粒子。包括电荷、质量、方向等等。
+       if(!fParticleGun) delete fParticleGun;
+       fParticleGun=new G4ParticleGun(particleNumber);// 创建particleNumber个全同粒子。包括电荷、质量、方向等等。
        //fParticleGun->SetNumberOfParticles(particleNumber);
        fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->FindParticle(particleName));
        fParticleGun->SetParticlePosition(particlePosition);
@@ -70,15 +90,7 @@ void PrimaryGeneratorAction::DefineParticleGun(G4int particleNumber, G4String pa
 void PrimaryGeneratorAction::DefineParticleGuns()
 {
 
-    double x,y;
-    double z=0;
-    x=-100;
-    y=-100;
-    while(z<19000||z>19040){ //z>19040||z<19000
-        pos3D->GetRandom3(x,y,z);
-    }
-    energy=hbeta->GetRandom();
-    DefineParticleGun(maxhit,"e+",G4ThreeVector(x*um,y*um,z*um),G4RandomDirection(), energy*GeV);
+
 
   //fParticleGun->SetParticleDefinition(G4ParticleTable::GetParticleTable()->GetIonTable()->GetIon(13,22));
     //fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.4,0.2,1.1).unit());

@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_HH
 #define DATASTRUCTURE_HH
 
-#define maxhit 1
+#define maxhit 2
 #include "TROOT.h"
 #include "TObject.h"
 #include "rapidjson/document.h"

@@ -67,8 +67,10 @@ void SensitiveDetector::EndOfEvent(G4HCofThisEvent *hitCollection)
             <<" hits in the tracker chambers: "<<G4endl;
         for (G4int i=0;i<nofHits;i++) {
             if((*fHitsCollection)[i]->GetIsHit())
-                G4cout<<(*fHitsCollection)[i]->GetXid()<<'\t'
-                       <<(*fHitsCollection)[i]->GetYid()<<'\t'
+                G4cout<<(*fHitsCollection)[i]->GetEventID()<<'\t'
+                        <<(*fHitsCollection)[i]->GetTrackID()<<'\t'
+                      <<(*fHitsCollection)[i]->GetXid()<<'\t'
+                   <<(*fHitsCollection)[i]->GetEventID()<<'\t'    <<(*fHitsCollection)[i]->GetYid()<<'\t'
                        <<(*fHitsCollection)[i]->GetEdep()<<'\t'
                        <<G4endl;
         }
